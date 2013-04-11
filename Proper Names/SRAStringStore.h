@@ -10,6 +10,8 @@
 
 @interface SRAStringStore : NSObject
 @property (strong,readonly,nonatomic)NSArray *allStrings;
+@property (strong,readonly,nonatomic)NSArray *firstLetters;
 + (SRAStringStore *)sharedStore;
 - (void)loadUrl:(NSURL *)url;
+- (NSArray *)byFirstLetter:(NSString *)firstLetter;
 @end

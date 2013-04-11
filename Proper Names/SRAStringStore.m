@@ -7,8 +7,12 @@
 //
 
 #import "SRAStringStore.h"
+#import <BlocksKit/BlocksKit.h>
 
 @implementation SRAStringStore
+
+@synthesize firstLetters=_firstLetters;
+
 + (SRAStringStore *)sharedStore
 {
   static dispatch_once_t pred;
@@ -38,6 +42,31 @@
     NSLog(@"error %@", [error localizedDescription]);
   }
   _allStrings = [content componentsSeparatedByString:@"\n"];
+  // clear the cache
+  _firstLetters = nil;
+}
+
+- (NSArray *)firstLetters
+{
+  if (!_firstLetters) {
+    NSLog(@"recalc firstLetters");
+    NSMutableSet *memo = [NSMutableSet set];
+    [self.allStrings each:^(NSString *str) {
+      if ([str length] > 0) {
+        [memo addObject:[str substringToIndex:1]];
+      }
+    }];
+    NSLog(@"firstLetters");
+    _firstLetters = [[memo allObjects] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+  }
+  return _firstLetters;
+}
+
+- (NSArray *)byFirstLetter:(NSString *)firstLetter
+{
+  return [self.allStrings select:^BOOL(NSString *str) {
+    return ([str length] > 0 && [[str substringToIndex:1] isEqualToString:firstLetter]);
+  }];
 }
 
 @end

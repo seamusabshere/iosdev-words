@@ -10,13 +10,20 @@
 #import "SRAStringStore.h"
 
 @implementation SRAProperNamesTableViewController
+- (id)initWithFirstLetter:(NSString *)firstLetter
+{
+  self = [self init];
+  if (self) {
+    _firstLetter = firstLetter;
+  }
+  return self;  
+}
+
 - (id)init
 {
   self = [super initWithStyle:UITableViewStyleGrouped];
   if (self) {
-    SRAStringStore *sharedStore = [SRAStringStore sharedStore];
-    NSURL *properNamesURL = [[NSBundle mainBundle] URLForResource:@"propernames" withExtension:@"txt"];
-    [sharedStore loadUrl:properNamesURL];
+    //custom
   }
   return self;
 }
@@ -29,7 +36,7 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-  return [[[SRAStringStore sharedStore] allStrings] count];
+  return [[[SRAStringStore sharedStore] byFirstLetter:self.firstLetter] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -42,9 +49,19 @@
             reuseIdentifier:@"UITableViewCell"];
   }
   int idx = [indexPath row];
-  NSString *text = [[[SRAStringStore sharedStore] allStrings] objectAtIndex:idx];
+  NSString *text = [[[SRAStringStore sharedStore] byFirstLetter:self.firstLetter] objectAtIndex:idx];
   cell.textLabel.text = [NSString stringWithFormat:@"%d: %@", idx, text];
   return cell;
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+//  [self.tableView reloadData];
+  UINavigationItem *navigationItem = self.navigationItem;
+  navigationItem.title = [NSString stringWithFormat:@"Letter %@", self.firstLetter];
+
+}
+
 
 @end

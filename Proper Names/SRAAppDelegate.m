@@ -7,7 +7,8 @@
 //
 
 #import "SRAAppDelegate.h"
-#import "SRAProperNamesTableViewController.h"
+#import "SRAStringStore.h"
+#import "SRALettersTableViewController.h"
 
 @implementation SRAAppDelegate
 
@@ -15,8 +16,13 @@
 {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   // Override point for customization after application launch.
-  SRAProperNamesTableViewController *properNamesTableViewController = [[SRAProperNamesTableViewController alloc] init];
-  self.window.rootViewController = properNamesTableViewController;
+  SRAStringStore *sharedStore = [SRAStringStore sharedStore];
+  NSURL *properNamesURL = [[NSBundle mainBundle] URLForResource:@"propernames" withExtension:@"txt"];
+  [sharedStore loadUrl:properNamesURL];
+  SRALettersTableViewController *lettersTableViewController = [[SRALettersTableViewController alloc] init];
+  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:lettersTableViewController];
+  self.window.rootViewController = navigationController;
+
   [self.window makeKeyAndVisible];
   return YES;
 }

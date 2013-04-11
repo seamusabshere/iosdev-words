@@ -6,7 +6,9 @@
 //  Copyright (c) 2013 Seamus Abshere. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface SRAProperNamesTableViewController : UITableViewController
+- (id)initWithFirstLetter:(NSString *)firstLetter;
+@property (strong,readonly,nonatomic) NSString* firstLetter;
 @end

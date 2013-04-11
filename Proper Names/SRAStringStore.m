@@ -49,14 +49,12 @@
 - (NSArray *)firstLetters
 {
   if (!_firstLetters) {
-    NSLog(@"recalc firstLetters");
     NSMutableSet *memo = [NSMutableSet set];
     [self.allStrings each:^(NSString *str) {
       if ([str length] > 0) {
         [memo addObject:[str substringToIndex:1]];
       }
     }];
-    NSLog(@"firstLetters");
     _firstLetters = [[memo allObjects] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
   }
   return _firstLetters;

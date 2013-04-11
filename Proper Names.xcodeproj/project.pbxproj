@@ -11,6 +11,8 @@
 		D312469D16FBB57900FD997B /* SRAStringStore.m in Sources */ = {isa = PBXBuildFile; fileRef = D312469C16FBB57900FD997B /* SRAStringStore.m */; };
 		D31246A016FBB82800FD997B /* SRAProperNamesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D312469F16FBB82800FD997B /* SRAProperNamesTableViewController.m */; };
 		D33301E2171649A300DAFE50 /* SRALettersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33301E1171649A300DAFE50 /* SRALettersTableViewController.m */; };
+		D33301E91717400200DAFE50 /* SRANewProperNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33301E71717400200DAFE50 /* SRANewProperNameController.m */; };
+		D33301EA1717400200DAFE50 /* SRANewProperNameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33301E81717400200DAFE50 /* SRANewProperNameController.xib */; };
 		D3CCB38116FB9FD10026474A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CCB38016FB9FD10026474A /* UIKit.framework */; };
 		D3CCB38316FB9FD10026474A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CCB38216FB9FD10026474A /* Foundation.framework */; };
 		D3CCB38516FB9FD10026474A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CCB38416FB9FD10026474A /* CoreGraphics.framework */; };
@@ -31,6 +33,10 @@
 		D312469F16FBB82800FD997B /* SRAProperNamesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAProperNamesTableViewController.m; sourceTree = "<group>"; };
 		D33301E0171649A300DAFE50 /* SRALettersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRALettersTableViewController.h; sourceTree = "<group>"; };
 		D33301E1171649A300DAFE50 /* SRALettersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRALettersTableViewController.m; sourceTree = "<group>"; };
+		D33301E61717400200DAFE50 /* SRANewProperNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRANewProperNameController.h; sourceTree = "<group>"; };
+		D33301E71717400200DAFE50 /* SRANewProperNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRANewProperNameController.m; sourceTree = "<group>"; };
+		D33301E81717400200DAFE50 /* SRANewProperNameController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SRANewProperNameController.xib; sourceTree = "<group>"; };
+		D33301EB17174FD200DAFE50 /* SRANewProperNameControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SRANewProperNameControllerDelegate.h; sourceTree = "<group>"; };
 		D3CCB37D16FB9FD10026474A /* Proper Names.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Proper Names.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3CCB38016FB9FD10026474A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D3CCB38216FB9FD10026474A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -104,6 +110,10 @@
 				D312469F16FBB82800FD997B /* SRAProperNamesTableViewController.m */,
 				D33301E0171649A300DAFE50 /* SRALettersTableViewController.h */,
 				D33301E1171649A300DAFE50 /* SRALettersTableViewController.m */,
+				D33301E61717400200DAFE50 /* SRANewProperNameController.h */,
+				D33301E71717400200DAFE50 /* SRANewProperNameController.m */,
+				D33301E81717400200DAFE50 /* SRANewProperNameController.xib */,
+				D33301EB17174FD200DAFE50 /* SRANewProperNameControllerDelegate.h */,
 			);
 			path = "Proper Names";
 			sourceTree = "<group>";
@@ -182,6 +192,7 @@
 				D3CCB39516FB9FD10026474A /* Default@2x.png in Resources */,
 				D3CCB39716FB9FD10026474A /* Default-568h@2x.png in Resources */,
 				D3CCB39E16FBA05A0026474A /* propernames.txt in Resources */,
+				D33301EA1717400200DAFE50 /* SRANewProperNameController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +239,7 @@
 				D312469D16FBB57900FD997B /* SRAStringStore.m in Sources */,
 				D31246A016FBB82800FD997B /* SRAProperNamesTableViewController.m in Sources */,
 				D33301E2171649A300DAFE50 /* SRALettersTableViewController.m in Sources */,
+				D33301E91717400200DAFE50 /* SRANewProperNameController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,4 +14,5 @@
 + (SRAStringStore *)sharedStore;
 - (void)loadUrl:(NSURL *)url;
 - (NSArray *)byFirstLetter:(NSString *)firstLetter;
+- (void)addString:(NSString *)str;
 @end

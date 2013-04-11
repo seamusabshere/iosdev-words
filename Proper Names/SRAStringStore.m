@@ -9,6 +9,10 @@
 #import "SRAStringStore.h"
 #import <BlocksKit/BlocksKit.h>
 
+@interface SRAStringStore()
+@property (strong,readwrite,nonatomic)NSMutableArray *mutableAllStrings;
+@end
+
 @implementation SRAStringStore
 
 @synthesize firstLetters=_firstLetters;
@@ -26,7 +30,7 @@
   self = [super init];
   if (self) {
     // a placeholder until you load something
-    _allStrings = @[];
+    _mutableAllStrings = (NSMutableArray*)@[];
   }
   return self;
 }
@@ -41,9 +45,14 @@
   if (error) {
     NSLog(@"error %@", [error localizedDescription]);
   }
-  _allStrings = [content componentsSeparatedByString:@"\n"];
-  // clear the cache
-  _firstLetters = nil;
+  _mutableAllStrings = (NSMutableArray*)[content componentsSeparatedByString:@"\n"];
+  _firstLetters = nil; // clear the cache
+}
+
+// inefficient? necessary?
+- (NSArray *)allStrings
+{
+  return [self.mutableAllStrings copy];
 }
 
 - (NSArray *)firstLetters
@@ -62,9 +71,18 @@
 
 - (NSArray *)byFirstLetter:(NSString *)firstLetter
 {
-  return [self.allStrings select:^BOOL(NSString *str) {
+  return [self.mutableAllStrings select:^BOOL(NSString *str) {
     return ([str length] > 0 && [[str substringToIndex:1] isEqualToString:firstLetter]);
   }];
+}
+
+// this should be implemented with NSOrderedMutableSet or smth
+- (void)addString:(NSString *)str
+{
+  if (![self.mutableAllStrings any:^BOOL(NSString *existing) { return [existing isEqualToString:str]; }]) {
+    [self.mutableAllStrings addObject:str];
+    _firstLetters = nil; //clear the cache
+  }
 }
 
 @end

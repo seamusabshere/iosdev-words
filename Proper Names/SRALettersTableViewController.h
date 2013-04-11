@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SRANewProperNameControllerDelegate.h"
 
-@interface SRALettersTableViewController : UITableViewController
-
+@interface SRALettersTableViewController : UITableViewController <SRANewProperNameControllerDelegate>
 @end

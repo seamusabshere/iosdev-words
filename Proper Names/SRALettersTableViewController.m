@@ -7,6 +7,7 @@
 //
 
 #import "SRALettersTableViewController.h"
+#import "SRANewProperNameController.h"
 #import "SRAProperNamesTableViewController.h"
 #import "SRAStringStore.h"
 
@@ -18,6 +19,11 @@
   if (self) {
     UINavigationItem *navigationItem = self.navigationItem;
     navigationItem.title = @"Letters";
+    UIBarButtonItem *addNewItemBarButton = [[UIBarButtonItem alloc]
+                                            initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                            target:self
+                                            action:@selector(addNewProperName:)];
+    self.navigationItem.rightBarButtonItem = addNewItemBarButton;
   }
   return self;
 }
@@ -66,5 +72,24 @@
   SRAProperNamesTableViewController *properNamesTableViewController = [[SRAProperNamesTableViewController alloc] initWithFirstLetter:selectedLetter];
   [self.navigationController pushViewController:properNamesTableViewController animated:YES];
 }
+
+- (IBAction)addNewProperName:(id)sender {
+  SRANewProperNameController *newProperNameController = [[SRANewProperNameController alloc] init];
+  newProperNameController.delegate = self;
+  
+  [self presentViewController:newProperNameController
+                     animated:YES
+                   completion:nil];
+}
+
+- (void)newProperNameController:(SRANewProperNameController *)controller
+                didAddProperName:(NSString *)properName {
+  if ([properName length] > 0) {
+    [[SRAStringStore sharedStore] addString:properName];
+  }
+  [self.tableView reloadData];
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end

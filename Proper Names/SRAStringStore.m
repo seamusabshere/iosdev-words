@@ -11,6 +11,8 @@
 
 @interface SRAStringStore()
 @property (strong,readwrite,nonatomic)NSMutableArray *mutableAllStrings;
+@property (strong,nonatomic)NSString *cachedLetter;
+@property (strong,nonatomic)NSArray *cachedStrings;
 @end
 
 @implementation SRAStringStore
@@ -69,11 +71,19 @@
   return _firstLetters;
 }
 
+//ahem not thread-safe...
 - (NSArray *)byFirstLetter:(NSString *)firstLetter
 {
-  return [self.mutableAllStrings select:^BOOL(NSString *str) {
-    return ([str length] > 0 && [[str substringToIndex:1] isEqualToString:firstLetter]);
-  }];
+  if (!self.cachedLetter || ![self.cachedLetter isEqualToString:firstLetter]) {
+    NSLog(@"regen %@", firstLetter);
+    self.cachedLetter = firstLetter;
+    NSArray *unsortedStrings = [self.mutableAllStrings select:^BOOL(NSString *str) {
+      return ([str length] > 0 && [[str substringToIndex:1] isEqualToString:firstLetter]);
+    }];
+    self.cachedStrings = [unsortedStrings sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+  }
+  NSLog(@"list %@", firstLetter);
+  return self.cachedStrings;
 }
 
 // this should be implemented with NSOrderedMutableSet or smth
@@ -81,7 +91,9 @@
 {
   if (![self.mutableAllStrings any:^BOOL(NSString *existing) { return [existing isEqualToString:str]; }]) {
     [self.mutableAllStrings addObject:str];
-    _firstLetters = nil; //clear the cache
+    //clear the cache
+    _cachedLetter = nil;
+    _firstLetters = nil;
   }
 }
 

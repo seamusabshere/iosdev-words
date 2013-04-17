@@ -76,8 +76,15 @@
 - (IBAction)addNewProperName:(id)sender {
   SRANewProperNameController *newProperNameController = [[SRANewProperNameController alloc] init];
   newProperNameController.delegate = self;
+//  detailViewController.dismissBlock = ^{
+//    [self.tableView reloadData];
+//  };
   
-  [self presentViewController:newProperNameController
+  UINavigationController *navigationController =
+  [[UINavigationController alloc] initWithRootViewController:newProperNameController];
+  navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+
+  [self presentViewController:navigationController
                      animated:YES
                    completion:nil];
 }

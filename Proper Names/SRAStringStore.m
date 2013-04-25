@@ -13,11 +13,10 @@
 @property (strong,readwrite,nonatomic)NSMutableArray *mutableAllStrings;
 @property (strong,nonatomic)NSString *cachedLetter;
 @property (strong,nonatomic)NSArray *cachedStrings;
+@property (strong,readwrite,nonatomic)NSArray *firstLetters;
 @end
 
 @implementation SRAStringStore
-
-@synthesize firstLetters=_firstLetters;
 
 + (SRAStringStore *)sharedStore
 {
@@ -31,10 +30,30 @@
 {
   self = [super init];
   if (self) {
-    // a placeholder until you load something
-    _mutableAllStrings = (NSMutableArray*)@[];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[self stringsDocumentPath]]) {
+      [self loadFromAppDirectory];
+    } else {
+      _mutableAllStrings = (NSMutableArray*)@[];
+    }
   }
   return self;
+}
+
+- (BOOL)bootstrap:(NSURL *)url
+{
+  if ([self.mutableAllStrings count] == 0) {
+    [self loadUrl:url];
+    return YES;
+  } else {
+    return NO;
+  }
+}
+
+- (void)loadFromAppDirectory
+{
+  NSLog(@"loading from app directory");
+  NSString *path = [self stringsDocumentPath];
+  self.mutableAllStrings = (NSMutableArray *)[NSArray arrayWithContentsOfFile:path];
 }
 
 // expects one string per line
@@ -47,8 +66,9 @@
   if (error) {
     NSLog(@"error %@", [error localizedDescription]);
   }
-  _mutableAllStrings = (NSMutableArray*)[content componentsSeparatedByString:@"\n"];
-  _firstLetters = nil; // clear the cache
+  self.mutableAllStrings = (NSMutableArray*)[content componentsSeparatedByString:@"\n"];
+  [self saveToAppDirectory];
+  self.firstLetters = nil; // clear the cache
 }
 
 // inefficient? necessary?
@@ -66,7 +86,7 @@
         [memo addObject:[str substringToIndex:1]];
       }
     }];
-    _firstLetters = [[memo allObjects] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    self.firstLetters = [[memo allObjects] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
   }
   return _firstLetters;
 }
@@ -75,14 +95,12 @@
 - (NSArray *)byFirstLetter:(NSString *)firstLetter
 {
   if (!self.cachedLetter || ![self.cachedLetter isEqualToString:firstLetter]) {
-    NSLog(@"regen %@", firstLetter);
     self.cachedLetter = firstLetter;
     NSArray *unsortedStrings = [self.mutableAllStrings select:^BOOL(NSString *str) {
       return ([str length] > 0 && [[str substringToIndex:1] isEqualToString:firstLetter]);
     }];
     self.cachedStrings = [unsortedStrings sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
   }
-  NSLog(@"list %@", firstLetter);
   return self.cachedStrings;
 }
 
@@ -91,10 +109,29 @@
 {
   if (![self.mutableAllStrings any:^BOOL(NSString *existing) { return [existing isEqualToString:str]; }]) {
     [self.mutableAllStrings addObject:str];
+    [self saveToAppDirectory];
     //clear the cache
-    _cachedLetter = nil;
-    _firstLetters = nil;
+    self.cachedLetter = nil;
+    self.firstLetters = nil;
   }
+}
+
+- (void)saveToAppDirectory
+{
+  NSLog(@"saving to app directory");
+  NSString *path = [self stringsDocumentPath];
+  [self.mutableAllStrings writeToFile:path atomically:YES];
+}
+
+- (NSString *)stringsDocumentPath
+{
+  NSArray *documentDirectories =
+  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                      NSUserDomainMask,
+                                      YES);
+  // Get the only document directory for iOS
+  NSString *documentDirectory = documentDirectories[0];
+  return [documentDirectory stringByAppendingPathComponent:@"strings.plist"];
 }
 
 @end

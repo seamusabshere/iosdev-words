@@ -12,6 +12,7 @@
 @property (strong,readonly,nonatomic)NSArray *allStrings;
 @property (strong,readonly,nonatomic)NSArray *firstLetters;
 + (SRAStringStore *)sharedStore;
+- (BOOL)bootstrap:(NSURL *)url; // load URL if store is empty
 - (void)loadUrl:(NSURL *)url;
 - (NSArray *)byFirstLetter:(NSString *)firstLetter;
 - (void)addString:(NSString *)str;

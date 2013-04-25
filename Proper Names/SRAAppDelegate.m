@@ -18,7 +18,7 @@
   // Override point for customization after application launch.
   SRAStringStore *sharedStore = [SRAStringStore sharedStore];
   NSURL *properNamesURL = [[NSBundle mainBundle] URLForResource:@"propernames" withExtension:@"txt"];
-  [sharedStore loadUrl:properNamesURL];
+  [sharedStore bootstrap:properNamesURL];
   SRALettersTableViewController *lettersTableViewController = [[SRALettersTableViewController alloc] init];
   UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:lettersTableViewController];
   self.window.rootViewController = navigationController;

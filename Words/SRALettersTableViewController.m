@@ -1,14 +1,14 @@
 //
 //  SRALettersTableViewController.m
-//  Proper Names
+//  Words
 //
 //  Created by Seamus Abshere on 4/10/13.
 //  Copyright (c) 2013 Seamus Abshere. All rights reserved.
 //
 
 #import "SRALettersTableViewController.h"
-#import "SRANewProperNameController.h"
-#import "SRAProperNamesTableViewController.h"
+#import "SRANewWordController.h"
+#import "SRAWordsTableViewController.h"
 #import "SRAStringStore.h"
 
 @implementation SRALettersTableViewController
@@ -22,7 +22,7 @@
     UIBarButtonItem *addNewItemBarButton = [[UIBarButtonItem alloc]
                                             initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                             target:self
-                                            action:@selector(addNewProperName:)];
+                                            action:@selector(addNewWord:)];
     self.navigationItem.rightBarButtonItem = addNewItemBarButton;
   }
   return self;
@@ -69,19 +69,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   NSString *selectedLetter = [[[SRAStringStore sharedStore] firstLetters] objectAtIndex:[indexPath row]];
-  SRAProperNamesTableViewController *properNamesTableViewController = [[SRAProperNamesTableViewController alloc] initWithFirstLetter:selectedLetter];
+  SRAWordsTableViewController *properNamesTableViewController = [[SRAWordsTableViewController alloc] initWithFirstLetter:selectedLetter];
   [self.navigationController pushViewController:properNamesTableViewController animated:YES];
 }
 
-- (IBAction)addNewProperName:(id)sender {
-  SRANewProperNameController *newProperNameController = [[SRANewProperNameController alloc] init];
-  newProperNameController.delegate = self;
+- (IBAction)addNewWord:(id)sender {
+  SRANewWordController *newWordController = [[SRANewWordController alloc] init];
+  newWordController.delegate = self;
 //  detailViewController.dismissBlock = ^{
 //    [self.tableView reloadData];
 //  };
   
   UINavigationController *navigationController =
-  [[UINavigationController alloc] initWithRootViewController:newProperNameController];
+  [[UINavigationController alloc] initWithRootViewController:newWordController];
   navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
 
   [self presentViewController:navigationController
@@ -89,8 +89,8 @@
                    completion:nil];
 }
 
-- (void)newProperNameController:(SRANewProperNameController *)controller
-                didAddProperName:(NSString *)properName {
+- (void)newWordController:(SRANewWordController *)controller
+                didAddWord:(NSString *)properName {
   if ([properName length] > 0) {
     [[SRAStringStore sharedStore] addString:properName];
   }

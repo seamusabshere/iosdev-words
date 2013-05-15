@@ -1,15 +1,15 @@
 //
-//  SRAProperNamesTableViewController.m
-//  Proper Names
+//  SRAWordsTableViewController.m
+//  Words
 //
 //  Created by Seamus Abshere on 3/21/13.
 //  Copyright (c) 2013 Seamus Abshere. All rights reserved.
 //
 
-#import "SRAProperNamesTableViewController.h"
+#import "SRAWordsTableViewController.h"
 #import "SRAStringStore.h"
 
-@implementation SRAProperNamesTableViewController
+@implementation SRAWordsTableViewController
 - (id)initWithFirstLetter:(NSString *)firstLetter
 {
   self = [self init];

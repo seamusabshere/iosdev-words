@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		5F72A5157F654A468D7C10F7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF67D3D55C6F424C922636FB /* libPods.a */; };
 		D312469D16FBB57900FD997B /* SRAStringStore.m in Sources */ = {isa = PBXBuildFile; fileRef = D312469C16FBB57900FD997B /* SRAStringStore.m */; };
-		D31246A016FBB82800FD997B /* SRAProperNamesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D312469F16FBB82800FD997B /* SRAProperNamesTableViewController.m */; };
+		D31246A016FBB82800FD997B /* SRAWordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D312469F16FBB82800FD997B /* SRAWordsTableViewController.m */; };
 		D33301E2171649A300DAFE50 /* SRALettersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33301E1171649A300DAFE50 /* SRALettersTableViewController.m */; };
-		D33301E91717400200DAFE50 /* SRANewProperNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33301E71717400200DAFE50 /* SRANewProperNameController.m */; };
-		D33301EA1717400200DAFE50 /* SRANewProperNameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33301E81717400200DAFE50 /* SRANewProperNameController.xib */; };
+		D33301E91717400200DAFE50 /* SRANewWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33301E71717400200DAFE50 /* SRANewWordController.m */; };
+		D33301EA1717400200DAFE50 /* SRANewWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33301E81717400200DAFE50 /* SRANewWordController.xib */; };
 		D3CCB38116FB9FD10026474A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CCB38016FB9FD10026474A /* UIKit.framework */; };
 		D3CCB38316FB9FD10026474A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CCB38216FB9FD10026474A /* Foundation.framework */; };
 		D3CCB38516FB9FD10026474A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CCB38416FB9FD10026474A /* CoreGraphics.framework */; };
@@ -29,22 +29,22 @@
 		CF67D3D55C6F424C922636FB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D312469B16FBB57900FD997B /* SRAStringStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAStringStore.h; sourceTree = "<group>"; };
 		D312469C16FBB57900FD997B /* SRAStringStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAStringStore.m; sourceTree = "<group>"; };
-		D312469E16FBB82800FD997B /* SRAProperNamesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAProperNamesTableViewController.h; sourceTree = "<group>"; };
-		D312469F16FBB82800FD997B /* SRAProperNamesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAProperNamesTableViewController.m; sourceTree = "<group>"; };
+		D312469E16FBB82800FD997B /* SRAWordsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAWordsTableViewController.h; sourceTree = "<group>"; };
+		D312469F16FBB82800FD997B /* SRAWordsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAWordsTableViewController.m; sourceTree = "<group>"; };
 		D33301E0171649A300DAFE50 /* SRALettersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRALettersTableViewController.h; sourceTree = "<group>"; };
 		D33301E1171649A300DAFE50 /* SRALettersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRALettersTableViewController.m; sourceTree = "<group>"; };
-		D33301E61717400200DAFE50 /* SRANewProperNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRANewProperNameController.h; sourceTree = "<group>"; };
-		D33301E71717400200DAFE50 /* SRANewProperNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRANewProperNameController.m; sourceTree = "<group>"; };
-		D33301E81717400200DAFE50 /* SRANewProperNameController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SRANewProperNameController.xib; sourceTree = "<group>"; };
-		D33301EB17174FD200DAFE50 /* SRANewProperNameControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SRANewProperNameControllerDelegate.h; sourceTree = "<group>"; };
-		D3CCB37D16FB9FD10026474A /* Proper Names.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Proper Names.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D33301E61717400200DAFE50 /* SRANewWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRANewWordController.h; sourceTree = "<group>"; };
+		D33301E71717400200DAFE50 /* SRANewWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRANewWordController.m; sourceTree = "<group>"; };
+		D33301E81717400200DAFE50 /* SRANewWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SRANewWordController.xib; sourceTree = "<group>"; };
+		D33301EB17174FD200DAFE50 /* SRANewWordControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SRANewWordControllerDelegate.h; sourceTree = "<group>"; };
+		D3CCB37D16FB9FD10026474A /* Words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Words.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3CCB38016FB9FD10026474A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D3CCB38216FB9FD10026474A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D3CCB38416FB9FD10026474A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		D3CCB38816FB9FD10026474A /* Proper Names-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Proper Names-Info.plist"; sourceTree = "<group>"; };
+		D3CCB38816FB9FD10026474A /* Words-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Words-Info.plist"; sourceTree = "<group>"; };
 		D3CCB38A16FB9FD10026474A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D3CCB38C16FB9FD10026474A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D3CCB38E16FB9FD10026474A /* Proper Names-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Proper Names-Prefix.pch"; sourceTree = "<group>"; };
+		D3CCB38E16FB9FD10026474A /* Words-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Words-Prefix.pch"; sourceTree = "<group>"; };
 		D3CCB38F16FB9FD10026474A /* SRAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SRAAppDelegate.h; sourceTree = "<group>"; };
 		D3CCB39016FB9FD10026474A /* SRAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SRAAppDelegate.m; sourceTree = "<group>"; };
 		D3CCB39216FB9FD10026474A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		D3CCB37416FB9FD10026474A = {
 			isa = PBXGroup;
 			children = (
-				D3CCB38616FB9FD10026474A /* Proper Names */,
+				D3CCB38616FB9FD10026474A /* Words */,
 				D3CCB37F16FB9FD10026474A /* Frameworks */,
 				D3CCB37E16FB9FD10026474A /* Products */,
 				F2B34D2D6A0940B8872C4010 /* Pods.xcconfig */,
@@ -82,7 +82,7 @@
 		D3CCB37E16FB9FD10026474A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D3CCB37D16FB9FD10026474A /* Proper Names.app */,
+				D3CCB37D16FB9FD10026474A /* Words.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,7 +98,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D3CCB38616FB9FD10026474A /* Proper Names */ = {
+		D3CCB38616FB9FD10026474A /* Words */ = {
 			isa = PBXGroup;
 			children = (
 				D3CCB38F16FB9FD10026474A /* SRAAppDelegate.h */,
@@ -106,26 +106,26 @@
 				D3CCB38716FB9FD10026474A /* Supporting Files */,
 				D312469B16FBB57900FD997B /* SRAStringStore.h */,
 				D312469C16FBB57900FD997B /* SRAStringStore.m */,
-				D312469E16FBB82800FD997B /* SRAProperNamesTableViewController.h */,
-				D312469F16FBB82800FD997B /* SRAProperNamesTableViewController.m */,
+				D312469E16FBB82800FD997B /* SRAWordsTableViewController.h */,
+				D312469F16FBB82800FD997B /* SRAWordsTableViewController.m */,
 				D33301E0171649A300DAFE50 /* SRALettersTableViewController.h */,
 				D33301E1171649A300DAFE50 /* SRALettersTableViewController.m */,
-				D33301E61717400200DAFE50 /* SRANewProperNameController.h */,
-				D33301E71717400200DAFE50 /* SRANewProperNameController.m */,
-				D33301E81717400200DAFE50 /* SRANewProperNameController.xib */,
-				D33301EB17174FD200DAFE50 /* SRANewProperNameControllerDelegate.h */,
+				D33301E61717400200DAFE50 /* SRANewWordController.h */,
+				D33301E71717400200DAFE50 /* SRANewWordController.m */,
+				D33301E81717400200DAFE50 /* SRANewWordController.xib */,
+				D33301EB17174FD200DAFE50 /* SRANewWordControllerDelegate.h */,
 			);
-			path = "Proper Names";
+			path = Words;
 			sourceTree = "<group>";
 		};
 		D3CCB38716FB9FD10026474A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				D3CCB39D16FBA05A0026474A /* propernames.txt */,
-				D3CCB38816FB9FD10026474A /* Proper Names-Info.plist */,
+				D3CCB38816FB9FD10026474A /* Words-Info.plist */,
 				D3CCB38916FB9FD10026474A /* InfoPlist.strings */,
 				D3CCB38C16FB9FD10026474A /* main.m */,
-				D3CCB38E16FB9FD10026474A /* Proper Names-Prefix.pch */,
+				D3CCB38E16FB9FD10026474A /* Words-Prefix.pch */,
 				D3CCB39216FB9FD10026474A /* Default.png */,
 				D3CCB39416FB9FD10026474A /* Default@2x.png */,
 				D3CCB39616FB9FD10026474A /* Default-568h@2x.png */,
@@ -136,9 +136,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D3CCB37C16FB9FD10026474A /* Proper Names */ = {
+		D3CCB37C16FB9FD10026474A /* Words */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D3CCB39A16FB9FD10026474A /* Build configuration list for PBXNativeTarget "Proper Names" */;
+			buildConfigurationList = D3CCB39A16FB9FD10026474A /* Build configuration list for PBXNativeTarget "Words" */;
 			buildPhases = (
 				16C398F220D04698A8B648CB /* Check Pods Manifest.lock */,
 				D3CCB37916FB9FD10026474A /* Sources */,
@@ -150,9 +150,9 @@
 			);
 			dependencies = (
 			);
-			name = "Proper Names";
-			productName = "Proper Names";
-			productReference = D3CCB37D16FB9FD10026474A /* Proper Names.app */;
+			name = Words;
+			productName = Words;
+			productReference = D3CCB37D16FB9FD10026474A /* Words.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -165,7 +165,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Seamus Abshere";
 			};
-			buildConfigurationList = D3CCB37816FB9FD10026474A /* Build configuration list for PBXProject "Proper Names" */;
+			buildConfigurationList = D3CCB37816FB9FD10026474A /* Build configuration list for PBXProject "Words" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -177,7 +177,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D3CCB37C16FB9FD10026474A /* Proper Names */,
+				D3CCB37C16FB9FD10026474A /* Words */,
 			);
 		};
 /* End PBXProject section */
@@ -192,7 +192,7 @@
 				D3CCB39516FB9FD10026474A /* Default@2x.png in Resources */,
 				D3CCB39716FB9FD10026474A /* Default-568h@2x.png in Resources */,
 				D3CCB39E16FBA05A0026474A /* propernames.txt in Resources */,
-				D33301EA1717400200DAFE50 /* SRANewProperNameController.xib in Resources */,
+				D33301EA1717400200DAFE50 /* SRANewWordController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,9 +237,9 @@
 				D3CCB38D16FB9FD10026474A /* main.m in Sources */,
 				D3CCB39116FB9FD10026474A /* SRAAppDelegate.m in Sources */,
 				D312469D16FBB57900FD997B /* SRAStringStore.m in Sources */,
-				D31246A016FBB82800FD997B /* SRAProperNamesTableViewController.m in Sources */,
+				D31246A016FBB82800FD997B /* SRAWordsTableViewController.m in Sources */,
 				D33301E2171649A300DAFE50 /* SRALettersTableViewController.m in Sources */,
-				D33301E91717400200DAFE50 /* SRANewProperNameController.m in Sources */,
+				D33301E91717400200DAFE50 /* SRANewWordController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,8 +318,8 @@
 			baseConfigurationReference = F2B34D2D6A0940B8872C4010 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Proper Names/Proper Names-Prefix.pch";
-				INFOPLIST_FILE = "Proper Names/Proper Names-Info.plist";
+				GCC_PREFIX_HEADER = "Words/Words-Prefix.pch";
+				INFOPLIST_FILE = "Words/Words-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -332,8 +332,8 @@
 			baseConfigurationReference = F2B34D2D6A0940B8872C4010 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Proper Names/Proper Names-Prefix.pch";
-				INFOPLIST_FILE = "Proper Names/Proper Names-Info.plist";
+				GCC_PREFIX_HEADER = "Words/Words-Prefix.pch";
+				INFOPLIST_FILE = "Words/Words-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -344,7 +344,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D3CCB37816FB9FD10026474A /* Build configuration list for PBXProject "Proper Names" */ = {
+		D3CCB37816FB9FD10026474A /* Build configuration list for PBXProject "Words" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D3CCB39816FB9FD10026474A /* Debug */,
@@ -353,7 +353,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D3CCB39A16FB9FD10026474A /* Build configuration list for PBXNativeTarget "Proper Names" */ = {
+		D3CCB39A16FB9FD10026474A /* Build configuration list for PBXNativeTarget "Words" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D3CCB39B16FB9FD10026474A /* Debug */,

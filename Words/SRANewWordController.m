@@ -1,19 +1,19 @@
 //
-//  SRANewProperNameController.m
-//  Proper Names
+//  SRANewWordController.m
+//  Words
 //
 //  Created by Seamus Abshere on 4/11/13.
 //  Copyright (c) 2013 Seamus Abshere. All rights reserved.
 //
 
-#import "SRANewProperNameController.h"
+#import "SRANewWordController.h"
 #import "SRAStringStore.h"
 
-@interface SRANewProperNameController ()
+@interface SRANewWordController ()
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @end
 
-@implementation SRANewProperNameController
+@implementation SRANewWordController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,7 +48,7 @@
 
 - (void)save:(id)sender
 {
-  [self.delegate newProperNameController:self didAddProperName:self.textField.text];
+  [self.delegate newWordController:self didAddWord:self.textField.text];
 }
 
 - (void)cancel:(id)sender
@@ -58,7 +58,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-  [self.delegate newProperNameController:self didAddProperName:self.textField.text];
+  [self.delegate newWordController:self didAddWord:self.textField.text];
   [textField resignFirstResponder];
   return YES;
 }

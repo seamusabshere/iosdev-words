@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'Proper Names' target in the 'Proper Names' project
+// Prefix header for all source files of the 'Words' target in the 'Words' project
 //
 
 #import <Availability.h>

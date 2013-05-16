@@ -9,7 +9,12 @@
 #import "SRAWordsTableViewController.h"
 #import "SRAWordStore.h"
 
+@interface SRAWordsTableViewController ()
+@property (strong, nonatomic)NSArray *cachedWords;
+@end
+
 @implementation SRAWordsTableViewController
+
 - (id)initWithPrefix:(NSManagedObject *)prefix
 {
   self = [self init];
@@ -34,7 +39,7 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-  return [[self.prefix valueForKey:@"words"] count];
+  return [self.words count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -46,10 +51,7 @@
             initWithStyle:UITableViewCellStyleDefault
             reuseIdentifier:@"UITableViewCell"];
   }
-  int idx = [indexPath row];
-  NSArray *words = [[self.prefix valueForKey:@"words"] allObjects];
-  NSString *text = [[words objectAtIndex:idx] valueForKey:@"content"];
-  cell.textLabel.text = [NSString stringWithFormat:@"%d: %@", idx, text];
+  cell.textLabel.text = [[self.words objectAtIndex:[indexPath row]] valueForKey:@"content"];
   return cell;
 }
 
@@ -57,6 +59,15 @@
 {
   [super viewWillAppear:animated];
 //  [self.tableView reloadData];
+}
+
+- (NSArray *)words
+{
+  if (!self.cachedWords) {
+    NSArray *descriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"description" ascending:YES]];
+    self.cachedWords = [[self.prefix valueForKey:@"words"] sortedArrayUsingDescriptors:descriptors];
+  }
+  return self.cachedWords;
 }
 
 

@@ -10,7 +10,7 @@
 #import "SRAWordsTableViewController.h"
 
 @interface SRAPrefixesTableViewController ()
-
+@property (strong, nonatomic)NSArray *cachedPrefixes;
 @end
 
 @implementation SRAPrefixesTableViewController
@@ -49,16 +49,13 @@
 - (void)didReceiveMemoryWarning
 {
   [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  //#warning Incomplete method implementation.
-  // Return the number of rows in the section.
-  return [(NSArray *)[[self.letter valueForKey:@"words"] valueForKeyPath:@"@distinctUnionOfObjects.prefix"] count];
+  return [self.prefixes count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,18 +68,25 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
   int idx = [indexPath row];
-  NSArray *prefixes = [[[self.letter valueForKey:@"words"] valueForKeyPath:@"@distinctUnionOfObjects.prefix"] allObjects];
-  NSManagedObject *prefix = [prefixes objectAtIndex:idx];
+  NSManagedObject *prefix = [self.prefixes objectAtIndex:idx];
   cell.textLabel.text = [prefix valueForKey:@"content"];
   return cell;
+}
+
+- (NSArray *)prefixes
+{
+  if (!self.cachedPrefixes) {
+    NSArray *descriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"description" ascending:YES]];
+    self.cachedPrefixes = [[[self.letter valueForKey:@"words"] valueForKeyPath:@"@distinctUnionOfObjects.prefix"] sortedArrayUsingDescriptors:descriptors];
+  }
+  return self.cachedPrefixes;
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  NSArray *prefixes = [[[self.letter valueForKey:@"words"] valueForKeyPath:@"@distinctUnionOfObjects.prefix"] allObjects];
-    NSManagedObject *prefix = [prefixes objectAtIndex:[indexPath row]];
+  NSManagedObject *prefix = [self.prefixes objectAtIndex:[indexPath row]];
   SRAWordsTableViewController *wordsTableViewController = [[SRAWordsTableViewController alloc] initWithPrefix:prefix];
   [self.navigationController pushViewController:wordsTableViewController animated:YES];
   

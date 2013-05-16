@@ -12,20 +12,16 @@
 @interface SRAWordStore : NSObject
 
 + (SRAWordStore *)sharedStore;
-+ (void)cleanup;
-+ (NSManagedObject *)prefix:(NSString *)str;
-+ (NSManagedObject *)letter:(NSString *)str;
 
 - (BOOL)save;
 - (BOOL)bootstrap:(NSURL *)url;
 - (void)load:(NSURL *)url;
-- (NSArray *)firstLetters;
-- (NSArray *)byFirstLetter:(NSString *)firstLetter;
 - (void)add:(NSString *)word;
+- (NSUInteger)count;
 
-//- (NSArray *)prefixesForLetter:(NSString *)letter;
-//- (NSArray *)wordsForPrefix:(NSString *)prefix;
-
-- (NSUInteger)countWithPredicate:(NSPredicate *)predicate;
-- (NSUInteger)prefixCount;
+- (void)clearCache;
+- (NSManagedObject *)findPrefix:(NSString *)str;
+- (NSManagedObject *)findLetter:(NSString *)str;
+- (NSArray *)letters;
+- (NSArray *)prefixes;
 @end

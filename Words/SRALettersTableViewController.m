@@ -49,7 +49,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return [[[SRAWordStore sharedStore] firstLetters] count];
+  return [[[SRAWordStore sharedStore] letters] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -62,7 +62,7 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
   int idx = [indexPath row];
-  cell.textLabel.text = [[[SRAWordStore sharedStore] firstLetters] objectAtIndex:idx];
+  cell.textLabel.text = [[[[SRAWordStore sharedStore] letters] objectAtIndex:idx] valueForKey:@"content"];
   return cell;
 }
 
@@ -70,8 +70,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  NSString *selectedLetter = [[[SRAWordStore sharedStore] firstLetters] objectAtIndex:[indexPath row]];
-  SRAPrefixesTableViewController *prefixesTableViewController = [[SRAPrefixesTableViewController alloc] initWithLetter:[SRAWordStore letter:selectedLetter]];
+  SRAPrefixesTableViewController *prefixesTableViewController = [[SRAPrefixesTableViewController alloc] initWithLetter:[[[SRAWordStore sharedStore] letters] objectAtIndex:[indexPath row]]];
   [self.navigationController pushViewController:prefixesTableViewController animated:YES];
 }
 
@@ -81,7 +80,6 @@
   UINavigationController *navigationController =
   [[UINavigationController alloc] initWithRootViewController:newWordController];
   navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
-
   [self presentViewController:navigationController
                      animated:YES
                    completion:nil];
@@ -95,6 +93,5 @@
   [self.tableView reloadData];
   [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 @end

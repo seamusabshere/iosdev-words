@@ -10,94 +10,16 @@
 #import "SRAWord.h"
 #import <BlocksKit/BlocksKit.h>
 
-static NSMutableDictionary *letters;
-static NSMutableDictionary *prefixes;
-
 @interface SRAWordStore()
-@property (strong,readwrite,nonatomic)NSMutableArray *allWords;
-@property (strong,nonatomic)NSArray *cachedFirstLetters;
-@property (strong,nonatomic)NSString *cachedLetter;
-@property (strong,nonatomic)NSArray *cachedWords;
-@property (strong, nonatomic) NSManagedObjectContext *context;
-@property (strong, nonatomic) NSManagedObjectModel *model;
+@property (strong,nonatomic)NSArray *cachedLetters;
+@property (strong,nonatomic)NSArray *cachedPrefixes;
+@property (strong,nonatomic)NSMutableDictionary *cachedFindLetter;
+@property (strong,nonatomic)NSMutableDictionary *cachedFindPrefix;
+@property (strong,nonatomic)NSManagedObjectContext *context;
+@property (strong,nonatomic)NSManagedObjectModel *model;
 @end
 
 @implementation SRAWordStore
-
-+ (NSManagedObject *)letter:(NSString *)str
-{
-  if (!letters) {
-    letters = [[NSMutableDictionary alloc] init];
-  }
-  NSString *letterStr = [str substringToIndex:1];
-  NSManagedObject *letter = [letters objectForKey:letterStr];
-  if (!letter) {
-    //    NSLog(@"missL - %@", letterStr);
-    NSManagedObjectContext *context = [[SRAWordStore sharedStore] context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    request.entity = [NSEntityDescription entityForName:@"SRALetter" inManagedObjectContext:context];;
-    request.predicate = [NSPredicate predicateWithFormat:@"content = %@", letterStr];
-    NSError * error = nil;
-    [context executeFetchRequest:request error:&error];
-    NSArray *result = [context executeFetchRequest:request error:&error];
-    if (!result) {
-      [NSException raise:@"Letter fetch failed" format:@"Reason: %@", [error localizedDescription]];
-    }
-    if ([result count] == 0) {
-      letter = [NSEntityDescription insertNewObjectForEntityForName:@"SRALetter" inManagedObjectContext:context];
-      // can't i use a setter?
-      [letter setValue:letterStr forKey:@"content"];
-    } else {
-      letter = [result objectAtIndex:0];
-    }
-    [letters setObject:letter forKey:letterStr];
-    //  } else {
-    //    NSLog(@"hitL - %@", letterStr);
-  }
-  return letter;
-}
-
-+ (NSManagedObject *)prefix:(NSString *)str
-{
-  if (!prefixes) {
-    prefixes = [[NSMutableDictionary alloc] init];
-  }
-  int prefixLength;
-  int maxPrefixLength = [str length];
-  prefixLength = (maxPrefixLength >= 3) ? 3 : maxPrefixLength;
-  NSString *prefixStr = [str substringToIndex:prefixLength];
-  NSManagedObject *prefix = [prefixes objectForKey:prefixStr];
-  if (!prefix) {
-    //    NSLog(@"missP - %@", prefixStr);
-    NSManagedObjectContext *context = [[SRAWordStore sharedStore] context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    request.entity = [NSEntityDescription entityForName:@"SRAPrefix" inManagedObjectContext:context];;
-    request.predicate = [NSPredicate predicateWithFormat:@"content = %@", prefixStr];
-    NSError * error = nil;
-    [context executeFetchRequest:request error:&error];
-    NSArray *result = [context executeFetchRequest:request error:&error];
-    if (!result) {
-      [NSException raise:@"Prefix fetch failed" format:@"Reason: %@", [error localizedDescription]];
-    }
-    if ([result count] == 0) {
-      prefix = [NSEntityDescription insertNewObjectForEntityForName:@"SRAPrefix" inManagedObjectContext:context];
-      // can't i use a setter?
-      [prefix setValue:prefixStr forKey:@"content"];
-    } else {
-      prefix = [result objectAtIndex:0];
-    }
-    [prefixes setObject:prefix forKey:prefixStr];
-    //  } else {
-    //    NSLog(@"hitP - %@", prefixStr);
-  }
-  return prefix;
-}
-
-+ (void)cleanup
-{
-  [letters removeAllObjects];
-  [prefixes removeAllObjects];
-}
 
 + (SRAWordStore *)sharedStore
 {
@@ -131,57 +53,124 @@ static NSMutableDictionary *prefixes;
   return self;
 }
 
-- (NSArray *)findWithPredicate:(NSPredicate *)predicate
+- (NSArray *)letters
 {
-  // This is like a SQL select statement
-  NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  
-  // This is like the 'from' part of the SQL select statement
-  NSEntityDescription *entity = [self.model entitiesByName][@"SRAWord"];
-  request.entity = entity;
-  
-  // This is like the 'order by' clause of the SQL select statement
-  NSSortDescriptor *sortDescriptor = [NSSortDescriptor
-                                      sortDescriptorWithKey:@"value"
-                                      ascending:YES];
-  request.sortDescriptors = @[sortDescriptor];
-  
-  request.predicate = predicate;
-  
-  // Execute the request
-  NSError *error = nil;
-  NSArray *result = [self.context executeFetchRequest:request
-                                                error:&error];
-  // If the fetch fails
-  if (!result) {
-    [NSException raise:@"Fetch failed"
-                format:@"Reason: %@", [error localizedDescription]];
+  if (!self.cachedLetters) {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"SRALetter" inManagedObjectContext:self.context];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor
+                                        sortDescriptorWithKey:@"content"
+                                        ascending:YES];
+    request.sortDescriptors = @[sortDescriptor];
+    NSError * error = nil;
+    [self.context executeFetchRequest:request error:&error];
+    NSArray *result = [self.context executeFetchRequest:request error:&error];
+    if (!result) {
+      [NSException raise:@"Letter fetch failed" format:@"Reason: %@", [error localizedDescription]];
+    }
+    self.cachedLetters = result;
   }
-  
-  return [[NSMutableArray alloc] initWithArray:result];
+  return self.cachedLetters;
 }
 
-// http://stackoverflow.com/questions/1134289/cocoa-core-data-efficient-way-to-count-entities
-- (NSUInteger)countWithPredicate:(NSPredicate *)predicate
+- (NSManagedObject *)findLetter:(NSString *)str
 {
-  NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  NSEntityDescription *entity = [self.model entitiesByName][@"SRAWord"];
-  request.entity = entity;
-  request.includesSubentities = NO;
-  request.predicate = predicate;
-  NSError *error = nil;
-  NSUInteger count = [self.context countForFetchRequest:request
-                                                  error:&error];
-  if (count == NSNotFound) {
-    [NSException raise:@"Count failed"
-                format:@"Reason: %@", [error localizedDescription]];
+  if (!self.cachedFindLetter) {
+    self.cachedFindLetter = [[NSMutableDictionary alloc] init];
   }
-  return count;
+  NSString *letterStr = [str substringToIndex:1];
+  NSManagedObject *letter = [self.cachedFindLetter objectForKey:letterStr];
+  if (!letter) {
+    //    NSLog(@"missL - %@", letterStr);
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"SRALetter" inManagedObjectContext:self.context];
+    request.predicate = [NSPredicate predicateWithFormat:@"content = %@", letterStr];
+    NSError * error = nil;
+    [self.context executeFetchRequest:request error:&error];
+    NSArray *result = [self.context executeFetchRequest:request error:&error];
+    if (!result) {
+      [NSException raise:@"Letter fetch failed" format:@"Reason: %@", [error localizedDescription]];
+    }
+    if ([result count] == 0) {
+      letter = [NSEntityDescription insertNewObjectForEntityForName:@"SRALetter" inManagedObjectContext:self.context];
+      // can't i use a setter?
+      [letter setValue:letterStr forKey:@"content"];
+    } else {
+      letter = [result objectAtIndex:0];
+    }
+    [self.cachedFindLetter setObject:letter forKey:letterStr];
+    //  } else {
+    //    NSLog(@"hitL - %@", letterStr);
+  }
+  return letter;
+}
+
+- (NSArray *)prefixes
+{
+  if (!self.cachedPrefixes) {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"SRAPrefix" inManagedObjectContext:self.context];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor
+                                        sortDescriptorWithKey:@"content"
+                                        ascending:YES];
+    request.sortDescriptors = @[sortDescriptor];
+    NSError * error = nil;
+    [self.context executeFetchRequest:request error:&error];
+    NSArray *result = [self.context executeFetchRequest:request error:&error];
+    if (!result) {
+      [NSException raise:@"Prefix fetch failed" format:@"Reason: %@", [error localizedDescription]];
+    }
+    self.cachedPrefixes = result;
+  }
+  return self.cachedPrefixes;
+}
+
+- (NSManagedObject *)findPrefix:(NSString *)str
+{
+  if (!self.cachedFindPrefix) {
+    self.cachedFindPrefix = [[NSMutableDictionary alloc] init];
+  }
+  int prefixLength;
+  int maxPrefixLength = [str length];
+  prefixLength = (maxPrefixLength >= 3) ? 3 : maxPrefixLength;
+  NSString *prefixStr = [str substringToIndex:prefixLength];
+  NSManagedObject *prefix = [self.cachedFindPrefix objectForKey:prefixStr];
+  if (!prefix) {
+    //    NSLog(@"missP - %@", prefixStr);
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"SRAPrefix" inManagedObjectContext:self.context];
+    request.predicate = [NSPredicate predicateWithFormat:@"content = %@", prefixStr];
+    NSError * error = nil;
+    [self.context executeFetchRequest:request error:&error];
+    NSArray *result = [self.context executeFetchRequest:request error:&error];
+    if (!result) {
+      [NSException raise:@"Prefix fetch failed" format:@"Reason: %@", [error localizedDescription]];
+    }
+    if ([result count] == 0) {
+      prefix = [NSEntityDescription insertNewObjectForEntityForName:@"SRAPrefix" inManagedObjectContext:self.context];
+      // can't i use a setter?
+      [prefix setValue:prefixStr forKey:@"content"];
+    } else {
+      prefix = [result objectAtIndex:0];
+    }
+    [self.cachedFindPrefix setObject:prefix forKey:prefixStr];
+    //  } else {
+    //    NSLog(@"hitP - %@", prefixStr);
+  }
+  return prefix;
+}
+
+- (void)clearCache
+{
+  self.cachedLetters = nil;
+  self.cachedPrefixes = nil;
+  [self.cachedFindLetter removeAllObjects];
+  [self.cachedFindPrefix removeAllObjects];
 }
 
 - (BOOL)bootstrap:(NSURL *)url
 {
-  if ([self countWithPredicate:[NSPredicate predicateWithFormat:@"TRUEPREDICATE"]] == 0) {
+  if ([self count] == 0) {
     [self load:url];
     return YES;
   } else {
@@ -201,63 +190,26 @@ static NSMutableDictionary *prefixes;
   }
   [[content componentsSeparatedByString:@"\n"] each:^(NSString *str) {
     if ([str length] > 0) {
-      [self add:str autoSave:NO];
+      [self add:str immediate:NO];
     }
   }];
   [self save];
 }
 
-- (NSArray *)firstLetters
-{
-  if (!self.cachedFirstLetters) {
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    request.entity = [NSEntityDescription entityForName:@"SRALetter" inManagedObjectContext:self.context];;
-    request.resultType = NSDictionaryResultType;
-    request.propertiesToFetch = @[@"content"];
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor
-                                        sortDescriptorWithKey:@"content"
-                                        ascending:YES];
-    request.sortDescriptors = @[sortDescriptor];
-    NSError *error = nil;
-    NSArray *result = [self.context executeFetchRequest:request error:&error];
-    if (!result) {
-      [NSException raise:@"Letter fetch failed" format:@"Reason: %@", [error localizedDescription]];
-    }
-    self.cachedFirstLetters = [result map:^id(NSDictionary *dict) {
-      return [dict objectForKey:@"content"];
-    }];
-  }
-  return self.cachedFirstLetters;
-}
-
-//ahem not thread-safe...
-- (NSArray *)byFirstLetter:(NSString *)firstLetter
-{
-  if (!self.cachedLetter || ![self.cachedLetter isEqualToString:firstLetter]) {
-    self.cachedLetter = firstLetter;
-    NSArray *unsortedWords = [self.allWords select:^BOOL(NSString *str) {
-      return ([str length] > 0 && [[str substringToIndex:1] isEqualToString:firstLetter]);
-    }];
-    self.cachedWords = [unsortedWords sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-  }
-  return self.cachedWords;
-}
-
-- (void)add:(NSString *)str autoSave:(BOOL)autoSave
+- (void)add:(NSString *)str immediate:(BOOL)immediate
 {
   SRAWord *word = [NSEntityDescription insertNewObjectForEntityForName:@"SRAWord"
                                                 inManagedObjectContext:self.context];
   word.content = str;
-  if (autoSave) {
+  if (immediate) {
     [self save];
-    //clear the cache
-    self.cachedLetter = nil;
+    [self clearCache];
   }
 }
 
 - (void)add:(NSString *)str
 {
-  [self add:str autoSave:YES];
+  [self add:str immediate:YES];
 }
 
 - (BOOL)save
@@ -273,12 +225,32 @@ static NSMutableDictionary *prefixes;
 - (NSString *)wordsArchivePath
 {
   NSArray *documentDirectories =
-  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                      NSUserDomainMask,
-                                      YES);
-  // Get the only document directory for iOS
+  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
   NSString *documentDirectory = documentDirectories[0];
   return [documentDirectory stringByAppendingPathComponent:@"words.sqlite"];
+}
+
+- (NSUInteger)count
+{
+  return [self countWithPredicate:[NSPredicate predicateWithFormat:@"TRUEPREDICATE"]];
+}
+
+// http://stackoverflow.com/questions/1134289/cocoa-core-data-efficient-way-to-count-entities
+- (NSUInteger)countWithPredicate:(NSPredicate *)predicate
+{
+  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  NSEntityDescription *entity = [self.model entitiesByName][@"SRAWord"];
+  request.entity = entity;
+  request.includesSubentities = NO;
+  request.predicate = predicate;
+  NSError *error = nil;
+  NSUInteger count = [self.context countForFetchRequest:request
+                                                  error:&error];
+  if (count == NSNotFound) {
+    [NSException raise:@"Count failed"
+                format:@"Reason: %@", [error localizedDescription]];
+  }
+  return count;
 }
 
 @end

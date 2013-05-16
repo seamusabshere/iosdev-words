@@ -65,6 +65,6 @@
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
-  [SRAWordStore cleanup];
+  [[SRAWordStore sharedStore] clearCache];
 }
 @end

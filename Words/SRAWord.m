@@ -17,12 +17,11 @@
 
 - (void)didChangeValueForKey:(NSString *)key
 {
-  if (![key isEqualToString:@"content"]) {
-    return;
+  if ([key isEqualToString:@"content"]) {
+    NSString *content = self.content;
+    self.letter = [[SRAWordStore sharedStore] findLetter:content];
+    self.prefix = [[SRAWordStore sharedStore] findPrefix:content];
   }
-  NSString *content = self.content;
-  self.letter = [SRAWordStore letter:content];
-  self.prefix = [SRAWordStore prefix:content];
 }
 
 @end

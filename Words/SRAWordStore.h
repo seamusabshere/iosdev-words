@@ -1,5 +1,5 @@
 //
-//  SRAStringStore.h
+//  SRAWordStore.h
 //  Words
 //
 //  Created by Seamus Abshere on 3/21/13.
@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SRAStringStore : NSObject
-@property (strong,readonly,nonatomic)NSArray *allStrings;
+@interface SRAWordStore : NSObject
+@property (strong,readonly,nonatomic)NSArray *allWords;
 @property (strong,readonly,nonatomic)NSArray *firstLetters;
-+ (SRAStringStore *)sharedStore;
++ (SRAWordStore *)sharedStore;
 - (BOOL)bootstrap:(NSURL *)url; // load URL if store is empty
 - (void)loadUrl:(NSURL *)url;
 - (NSArray *)byFirstLetter:(NSString *)firstLetter;

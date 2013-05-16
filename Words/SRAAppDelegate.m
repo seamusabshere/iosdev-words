@@ -7,7 +7,7 @@
 //
 
 #import "SRAAppDelegate.h"
-#import "SRAStringStore.h"
+#import "SRAWordStore.h"
 #import "SRALettersTableViewController.h"
 
 @implementation SRAAppDelegate
@@ -16,7 +16,7 @@
 {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   // Override point for customization after application launch.
-  SRAStringStore *sharedStore = [SRAStringStore sharedStore];
+  SRAWordStore *sharedStore = [SRAWordStore sharedStore];
   NSURL *properNamesURL = [[NSBundle mainBundle] URLForResource:@"propernames" withExtension:@"txt"];
   [sharedStore bootstrap:properNamesURL];
   SRALettersTableViewController *lettersTableViewController = [[SRALettersTableViewController alloc] init];

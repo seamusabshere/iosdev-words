@@ -7,7 +7,7 @@
 //
 
 #import "SRAWordsTableViewController.h"
-#import "SRAStringStore.h"
+#import "SRAWordStore.h"
 
 @implementation SRAWordsTableViewController
 - (id)initWithFirstLetter:(NSString *)firstLetter
@@ -36,7 +36,7 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-  return [[[SRAStringStore sharedStore] byFirstLetter:self.firstLetter] count];
+  return [[[SRAWordStore sharedStore] byFirstLetter:self.firstLetter] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -49,7 +49,7 @@
             reuseIdentifier:@"UITableViewCell"];
   }
   int idx = [indexPath row];
-  NSString *text = [[[SRAStringStore sharedStore] byFirstLetter:self.firstLetter] objectAtIndex:idx];
+  NSString *text = [[[SRAWordStore sharedStore] byFirstLetter:self.firstLetter] objectAtIndex:idx];
   cell.textLabel.text = [NSString stringWithFormat:@"%d: %@", idx, text];
   return cell;
 }

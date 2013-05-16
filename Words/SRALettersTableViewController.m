@@ -9,7 +9,7 @@
 #import "SRALettersTableViewController.h"
 #import "SRANewWordController.h"
 #import "SRAWordsTableViewController.h"
-#import "SRAStringStore.h"
+#import "SRAWordStore.h"
 
 @implementation SRALettersTableViewController
 
@@ -47,7 +47,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return [[[SRAStringStore sharedStore] firstLetters] count];
+  return [[[SRAWordStore sharedStore] firstLetters] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -60,7 +60,7 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
   int idx = [indexPath row];
-  cell.textLabel.text = [[[SRAStringStore sharedStore] firstLetters] objectAtIndex:idx];
+  cell.textLabel.text = [[[SRAWordStore sharedStore] firstLetters] objectAtIndex:idx];
   return cell;
 }
 
@@ -68,7 +68,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  NSString *selectedLetter = [[[SRAStringStore sharedStore] firstLetters] objectAtIndex:[indexPath row]];
+  NSString *selectedLetter = [[[SRAWordStore sharedStore] firstLetters] objectAtIndex:[indexPath row]];
   SRAWordsTableViewController *properNamesTableViewController = [[SRAWordsTableViewController alloc] initWithFirstLetter:selectedLetter];
   [self.navigationController pushViewController:properNamesTableViewController animated:YES];
 }
@@ -92,7 +92,7 @@
 - (void)newWordController:(SRANewWordController *)controller
                 didAddWord:(NSString *)properName {
   if ([properName length] > 0) {
-    [[SRAStringStore sharedStore] addString:properName];
+    [[SRAWordStore sharedStore] addString:properName];
   }
   [self.tableView reloadData];
   [self dismissViewControllerAnimated:YES completion:nil];

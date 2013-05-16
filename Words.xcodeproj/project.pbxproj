@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F72A5157F654A468D7C10F7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF67D3D55C6F424C922636FB /* libPods.a */; };
-		D312469D16FBB57900FD997B /* SRAStringStore.m in Sources */ = {isa = PBXBuildFile; fileRef = D312469C16FBB57900FD997B /* SRAStringStore.m */; };
+		D312469D16FBB57900FD997B /* SRAWordStore.m in Sources */ = {isa = PBXBuildFile; fileRef = D312469C16FBB57900FD997B /* SRAWordStore.m */; };
 		D31246A016FBB82800FD997B /* SRAWordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D312469F16FBB82800FD997B /* SRAWordsTableViewController.m */; };
 		D33301E2171649A300DAFE50 /* SRALettersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33301E1171649A300DAFE50 /* SRALettersTableViewController.m */; };
 		D33301E91717400200DAFE50 /* SRANewWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33301E71717400200DAFE50 /* SRANewWordController.m */; };
@@ -27,8 +27,8 @@
 
 /* Begin PBXFileReference section */
 		CF67D3D55C6F424C922636FB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D312469B16FBB57900FD997B /* SRAStringStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAStringStore.h; sourceTree = "<group>"; };
-		D312469C16FBB57900FD997B /* SRAStringStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAStringStore.m; sourceTree = "<group>"; };
+		D312469B16FBB57900FD997B /* SRAWordStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAWordStore.h; sourceTree = "<group>"; };
+		D312469C16FBB57900FD997B /* SRAWordStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAWordStore.m; sourceTree = "<group>"; };
 		D312469E16FBB82800FD997B /* SRAWordsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAWordsTableViewController.h; sourceTree = "<group>"; };
 		D312469F16FBB82800FD997B /* SRAWordsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAWordsTableViewController.m; sourceTree = "<group>"; };
 		D33301E0171649A300DAFE50 /* SRALettersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRALettersTableViewController.h; sourceTree = "<group>"; };
@@ -104,8 +104,8 @@
 				D3CCB38F16FB9FD10026474A /* SRAAppDelegate.h */,
 				D3CCB39016FB9FD10026474A /* SRAAppDelegate.m */,
 				D3CCB38716FB9FD10026474A /* Supporting Files */,
-				D312469B16FBB57900FD997B /* SRAStringStore.h */,
-				D312469C16FBB57900FD997B /* SRAStringStore.m */,
+				D312469B16FBB57900FD997B /* SRAWordStore.h */,
+				D312469C16FBB57900FD997B /* SRAWordStore.m */,
 				D312469E16FBB82800FD997B /* SRAWordsTableViewController.h */,
 				D312469F16FBB82800FD997B /* SRAWordsTableViewController.m */,
 				D33301E0171649A300DAFE50 /* SRALettersTableViewController.h */,
@@ -236,7 +236,7 @@
 			files = (
 				D3CCB38D16FB9FD10026474A /* main.m in Sources */,
 				D3CCB39116FB9FD10026474A /* SRAAppDelegate.m in Sources */,
-				D312469D16FBB57900FD997B /* SRAStringStore.m in Sources */,
+				D312469D16FBB57900FD997B /* SRAWordStore.m in Sources */,
 				D31246A016FBB82800FD997B /* SRAWordsTableViewController.m in Sources */,
 				D33301E2171649A300DAFE50 /* SRALettersTableViewController.m in Sources */,
 				D33301E91717400200DAFE50 /* SRANewWordController.m in Sources */,

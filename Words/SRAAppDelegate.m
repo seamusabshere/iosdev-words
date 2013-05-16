@@ -8,7 +8,6 @@
 
 #import "SRAAppDelegate.h"
 #import "SRAWordStore.h"
-#import "SRAWord.h"
 #import "SRALettersTableViewController.h"
 
 @implementation SRAAppDelegate
@@ -66,6 +65,6 @@
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
-  [SRAWord cleanup];
+  [SRAWordStore cleanup];
 }
 @end

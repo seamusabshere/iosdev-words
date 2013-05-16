@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 @interface SRAWordsTableViewController : UITableViewController
-- (id)initWithFirstLetter:(NSString *)firstLetter;
-@property (strong,readonly,nonatomic) NSString* firstLetter;
+@property (strong,readonly,nonatomic) NSManagedObject* prefix;
+- (id)initWithPrefix:(NSManagedObject *)prefix;
 @end

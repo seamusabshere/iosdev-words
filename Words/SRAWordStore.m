@@ -10,6 +10,9 @@
 #import "SRAWord.h"
 #import <BlocksKit/BlocksKit.h>
 
+static NSMutableDictionary *letters;
+static NSMutableDictionary *prefixes;
+
 @interface SRAWordStore()
 @property (strong,readwrite,nonatomic)NSMutableArray *allWords;
 @property (strong,nonatomic)NSArray *cachedFirstLetters;
@@ -20,6 +23,81 @@
 @end
 
 @implementation SRAWordStore
+
++ (NSManagedObject *)letter:(NSString *)str
+{
+  if (!letters) {
+    letters = [[NSMutableDictionary alloc] init];
+  }
+  NSString *letterStr = [str substringToIndex:1];
+  NSManagedObject *letter = [letters objectForKey:letterStr];
+  if (!letter) {
+    //    NSLog(@"missL - %@", letterStr);
+    NSManagedObjectContext *context = [[SRAWordStore sharedStore] context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"SRALetter" inManagedObjectContext:context];;
+    request.predicate = [NSPredicate predicateWithFormat:@"content = %@", letterStr];
+    NSError * error = nil;
+    [context executeFetchRequest:request error:&error];
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    if (!result) {
+      [NSException raise:@"Letter fetch failed" format:@"Reason: %@", [error localizedDescription]];
+    }
+    if ([result count] == 0) {
+      letter = [NSEntityDescription insertNewObjectForEntityForName:@"SRALetter" inManagedObjectContext:context];
+      // can't i use a setter?
+      [letter setValue:letterStr forKey:@"content"];
+    } else {
+      letter = [result objectAtIndex:0];
+    }
+    [letters setObject:letter forKey:letterStr];
+    //  } else {
+    //    NSLog(@"hitL - %@", letterStr);
+  }
+  return letter;
+}
+
++ (NSManagedObject *)prefix:(NSString *)str
+{
+  if (!prefixes) {
+    prefixes = [[NSMutableDictionary alloc] init];
+  }
+  int prefixLength;
+  int maxPrefixLength = [str length];
+  prefixLength = (maxPrefixLength >= 3) ? 3 : maxPrefixLength;
+  NSString *prefixStr = [str substringToIndex:prefixLength];
+  NSManagedObject *prefix = [prefixes objectForKey:prefixStr];
+  if (!prefix) {
+    //    NSLog(@"missP - %@", prefixStr);
+    NSManagedObjectContext *context = [[SRAWordStore sharedStore] context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"SRAPrefix" inManagedObjectContext:context];;
+    request.predicate = [NSPredicate predicateWithFormat:@"content = %@", prefixStr];
+    NSError * error = nil;
+    [context executeFetchRequest:request error:&error];
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    if (!result) {
+      [NSException raise:@"Prefix fetch failed" format:@"Reason: %@", [error localizedDescription]];
+    }
+    if ([result count] == 0) {
+      prefix = [NSEntityDescription insertNewObjectForEntityForName:@"SRAPrefix" inManagedObjectContext:context];
+      // can't i use a setter?
+      [prefix setValue:prefixStr forKey:@"content"];
+    } else {
+      prefix = [result objectAtIndex:0];
+    }
+    [prefixes setObject:prefix forKey:prefixStr];
+    //  } else {
+    //    NSLog(@"hitP - %@", prefixStr);
+  }
+  return prefix;
+}
+
++ (void)cleanup
+{
+  [letters removeAllObjects];
+  [prefixes removeAllObjects];
+}
 
 + (SRAWordStore *)sharedStore
 {
@@ -33,23 +111,11 @@
 {
   self = [super init];
   if (self) {
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:[self wordsArchivePath]]) {
-//      [self loadFromAppDirectory];
-//    } else {
-//      _allWords = (NSMutableArray*)@[];
-//    }
-    // Read in Homepwner.xcdatamodeld
     _model = [NSManagedObjectModel mergedModelFromBundles:nil];
-    
-    // Create the store coordinator
     NSPersistentStoreCoordinator *persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_model];
-    
     NSString *path = [self wordsArchivePath];
     NSURL *storeURL = [NSURL fileURLWithPath:path];
-    
     NSError *error = nil;
-    
-    // Configure the store coordinator
     if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                   configuration:nil
                                                             URL:storeURL
@@ -58,12 +124,8 @@
       [NSException raise:@"Open Failed"
                   format:@"Reason: %@", [error localizedDescription]];
     }
-    
-    // Create the managed object context
     _context = [[NSManagedObjectContext alloc] init];
     _context.persistentStoreCoordinator = persistentStoreCoordinator;
-    
-    // The managed object context can manage undo, but we don't need it
     _context.undoManager = nil;
   }
   return self;
@@ -161,7 +223,9 @@
     if (!result) {
       [NSException raise:@"Letter fetch failed" format:@"Reason: %@", [error localizedDescription]];
     }
-    self.cachedFirstLetters = result;
+    self.cachedFirstLetters = [result map:^id(NSDictionary *dict) {
+      return [dict objectForKey:@"content"];
+    }];
   }
   return self.cachedFirstLetters;
 }

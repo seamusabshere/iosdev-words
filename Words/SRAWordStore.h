@@ -7,10 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @interface SRAWordStore : NSObject
 
 + (SRAWordStore *)sharedStore;
++ (void)cleanup;
++ (NSManagedObject *)prefix:(NSString *)str;
++ (NSManagedObject *)letter:(NSString *)str;
+
 - (BOOL)save;
 - (BOOL)bootstrap:(NSURL *)url;
 - (void)load:(NSURL *)url;

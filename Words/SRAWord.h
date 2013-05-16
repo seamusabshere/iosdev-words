@@ -16,5 +16,4 @@
 @property (nonatomic, strong) NSManagedObject *letter;
 @property (nonatomic, strong) NSManagedObject *prefix;
 
-+ (void)cleanup;
 @end

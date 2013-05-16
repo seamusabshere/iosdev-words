@@ -10,22 +10,20 @@
 #import "SRAWordStore.h"
 
 @implementation SRAWordsTableViewController
-- (id)initWithFirstLetter:(NSString *)firstLetter
+- (id)initWithPrefix:(NSManagedObject *)prefix
 {
   self = [self init];
   if (self) {
-    _firstLetter = firstLetter;
+    _prefix = prefix;
+    UINavigationItem *navigationItem = self.navigationItem;
+    navigationItem.title = [NSString stringWithFormat:@"%@ words", [_prefix valueForKey:@"content"]];
   }
   return self;  
 }
 
 - (id)init
 {
-  self = [super initWithStyle:UITableViewStyleGrouped];
-  if (self) {
-    //custom
-  }
-  return self;
+  return [super initWithStyle:UITableViewStyleGrouped];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -36,7 +34,7 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-  return [[[SRAWordStore sharedStore] byFirstLetter:self.firstLetter] count];
+  return [[self.prefix valueForKey:@"words"] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -49,7 +47,8 @@
             reuseIdentifier:@"UITableViewCell"];
   }
   int idx = [indexPath row];
-  NSString *text = [[[SRAWordStore sharedStore] byFirstLetter:self.firstLetter] objectAtIndex:idx];
+  NSArray *words = [[self.prefix valueForKey:@"words"] allObjects];
+  NSString *text = [[words objectAtIndex:idx] valueForKey:@"content"];
   cell.textLabel.text = [NSString stringWithFormat:@"%d: %@", idx, text];
   return cell;
 }
@@ -58,9 +57,6 @@
 {
   [super viewWillAppear:animated];
 //  [self.tableView reloadData];
-  UINavigationItem *navigationItem = self.navigationItem;
-  navigationItem.title = [NSString stringWithFormat:@"Letter %@", self.firstLetter];
-
 }
 
 

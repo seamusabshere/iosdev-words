@@ -7,8 +7,10 @@
 //
 
 #import "SRALettersTableViewController.h"
+#import "SRAPrefixesTableViewController.h"
 #import "SRANewWordController.h"
 #import "SRAWordsTableViewController.h"
+#import "SRAWord.h"
 #import "SRAWordStore.h"
 
 @implementation SRALettersTableViewController
@@ -60,7 +62,7 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
   int idx = [indexPath row];
-  cell.textLabel.text = [[[[SRAWordStore sharedStore] firstLetters] objectAtIndex:idx] valueForKey:@"content"];
+  cell.textLabel.text = [[[SRAWordStore sharedStore] firstLetters] objectAtIndex:idx];
   return cell;
 }
 
@@ -69,17 +71,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   NSString *selectedLetter = [[[SRAWordStore sharedStore] firstLetters] objectAtIndex:[indexPath row]];
-  SRAWordsTableViewController *wordsTableViewController = [[SRAWordsTableViewController alloc] initWithFirstLetter:selectedLetter];
-  [self.navigationController pushViewController:wordsTableViewController animated:YES];
+  SRAPrefixesTableViewController *prefixesTableViewController = [[SRAPrefixesTableViewController alloc] initWithLetter:[SRAWordStore letter:selectedLetter]];
+  [self.navigationController pushViewController:prefixesTableViewController animated:YES];
 }
 
 - (IBAction)addWord:(id)sender {
   SRANewWordController *newWordController = [[SRANewWordController alloc] init];
   newWordController.delegate = self;
-//  detailViewController.dismissBlock = ^{
-//    [self.tableView reloadData];
-//  };
-  
   UINavigationController *navigationController =
   [[UINavigationController alloc] initWithRootViewController:newWordController];
   navigationController.modalPresentationStyle = UIModalPresentationFormSheet;

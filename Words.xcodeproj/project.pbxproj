@@ -17,6 +17,7 @@
 		D36E10AC17448F4E004970EA /* Words.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D36E10AA17448F4E004970EA /* Words.xcdatamodeld */; };
 		D36E10B317449BA4004970EA /* words.txt in Resources */ = {isa = PBXBuildFile; fileRef = D36E10B217449BA4004970EA /* words.txt */; };
 		D36E10B91744AC0E004970EA /* SRAWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E10B81744AC0E004970EA /* SRAWord.m */; };
+		D36E10BC1744D7C0004970EA /* SRAPrefixesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E10BB1744D7C0004970EA /* SRAPrefixesTableViewController.m */; };
 		D3CCB38116FB9FD10026474A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CCB38016FB9FD10026474A /* UIKit.framework */; };
 		D3CCB38316FB9FD10026474A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CCB38216FB9FD10026474A /* Foundation.framework */; };
 		D3CCB38516FB9FD10026474A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CCB38416FB9FD10026474A /* CoreGraphics.framework */; };
@@ -45,6 +46,8 @@
 		D36E10B217449BA4004970EA /* words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = words.txt; sourceTree = "<group>"; };
 		D36E10B71744AC0E004970EA /* SRAWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAWord.h; sourceTree = "<group>"; };
 		D36E10B81744AC0E004970EA /* SRAWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAWord.m; sourceTree = "<group>"; };
+		D36E10BA1744D7C0004970EA /* SRAPrefixesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAPrefixesTableViewController.h; sourceTree = "<group>"; };
+		D36E10BB1744D7C0004970EA /* SRAPrefixesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAPrefixesTableViewController.m; sourceTree = "<group>"; };
 		D3CCB37D16FB9FD10026474A /* Words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Words.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3CCB38016FB9FD10026474A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D3CCB38216FB9FD10026474A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -113,19 +116,21 @@
 			children = (
 				D3CCB38F16FB9FD10026474A /* SRAAppDelegate.h */,
 				D3CCB39016FB9FD10026474A /* SRAAppDelegate.m */,
-				D3CCB38716FB9FD10026474A /* Supporting Files */,
-				D312469B16FBB57900FD997B /* SRAWordStore.h */,
-				D312469C16FBB57900FD997B /* SRAWordStore.m */,
-				D312469E16FBB82800FD997B /* SRAWordsTableViewController.h */,
-				D312469F16FBB82800FD997B /* SRAWordsTableViewController.m */,
 				D33301E0171649A300DAFE50 /* SRALettersTableViewController.h */,
 				D33301E1171649A300DAFE50 /* SRALettersTableViewController.m */,
 				D33301E61717400200DAFE50 /* SRANewWordController.h */,
 				D33301E71717400200DAFE50 /* SRANewWordController.m */,
 				D33301E81717400200DAFE50 /* SRANewWordController.xib */,
 				D33301EB17174FD200DAFE50 /* SRANewWordControllerDelegate.h */,
+				D36E10BA1744D7C0004970EA /* SRAPrefixesTableViewController.h */,
+				D36E10BB1744D7C0004970EA /* SRAPrefixesTableViewController.m */,
 				D36E10B71744AC0E004970EA /* SRAWord.h */,
 				D36E10B81744AC0E004970EA /* SRAWord.m */,
+				D312469E16FBB82800FD997B /* SRAWordsTableViewController.h */,
+				D312469F16FBB82800FD997B /* SRAWordsTableViewController.m */,
+				D312469B16FBB57900FD997B /* SRAWordStore.h */,
+				D312469C16FBB57900FD997B /* SRAWordStore.m */,
+				D3CCB38716FB9FD10026474A /* Supporting Files */,
 			);
 			path = Words;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 				D33301E91717400200DAFE50 /* SRANewWordController.m in Sources */,
 				D36E10AC17448F4E004970EA /* Words.xcdatamodeld in Sources */,
 				D36E10B91744AC0E004970EA /* SRAWord.m in Sources */,
+				D36E10BC1744D7C0004970EA /* SRAPrefixesTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

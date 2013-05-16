@@ -13,6 +13,10 @@
 		D33301E2171649A300DAFE50 /* SRALettersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33301E1171649A300DAFE50 /* SRALettersTableViewController.m */; };
 		D33301E91717400200DAFE50 /* SRANewWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33301E71717400200DAFE50 /* SRANewWordController.m */; };
 		D33301EA1717400200DAFE50 /* SRANewWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33301E81717400200DAFE50 /* SRANewWordController.xib */; };
+		D36E10A617448EE2004970EA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36E10A517448EE2004970EA /* CoreData.framework */; };
+		D36E10AC17448F4E004970EA /* Words.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D36E10AA17448F4E004970EA /* Words.xcdatamodeld */; };
+		D36E10B317449BA4004970EA /* words.txt in Resources */ = {isa = PBXBuildFile; fileRef = D36E10B217449BA4004970EA /* words.txt */; };
+		D36E10B91744AC0E004970EA /* SRAWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E10B81744AC0E004970EA /* SRAWord.m */; };
 		D3CCB38116FB9FD10026474A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CCB38016FB9FD10026474A /* UIKit.framework */; };
 		D3CCB38316FB9FD10026474A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CCB38216FB9FD10026474A /* Foundation.framework */; };
 		D3CCB38516FB9FD10026474A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CCB38416FB9FD10026474A /* CoreGraphics.framework */; };
@@ -22,7 +26,6 @@
 		D3CCB39316FB9FD10026474A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D3CCB39216FB9FD10026474A /* Default.png */; };
 		D3CCB39516FB9FD10026474A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3CCB39416FB9FD10026474A /* Default@2x.png */; };
 		D3CCB39716FB9FD10026474A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3CCB39616FB9FD10026474A /* Default-568h@2x.png */; };
-		D3CCB39E16FBA05A0026474A /* propernames.txt in Resources */ = {isa = PBXBuildFile; fileRef = D3CCB39D16FBA05A0026474A /* propernames.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +40,11 @@
 		D33301E71717400200DAFE50 /* SRANewWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRANewWordController.m; sourceTree = "<group>"; };
 		D33301E81717400200DAFE50 /* SRANewWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SRANewWordController.xib; sourceTree = "<group>"; };
 		D33301EB17174FD200DAFE50 /* SRANewWordControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SRANewWordControllerDelegate.h; sourceTree = "<group>"; };
+		D36E10A517448EE2004970EA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D36E10AB17448F4E004970EA /* Words.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Words.xcdatamodel; sourceTree = "<group>"; };
+		D36E10B217449BA4004970EA /* words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = words.txt; sourceTree = "<group>"; };
+		D36E10B71744AC0E004970EA /* SRAWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAWord.h; sourceTree = "<group>"; };
+		D36E10B81744AC0E004970EA /* SRAWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAWord.m; sourceTree = "<group>"; };
 		D3CCB37D16FB9FD10026474A /* Words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Words.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3CCB38016FB9FD10026474A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D3CCB38216FB9FD10026474A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -50,7 +58,6 @@
 		D3CCB39216FB9FD10026474A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D3CCB39416FB9FD10026474A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D3CCB39616FB9FD10026474A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		D3CCB39D16FBA05A0026474A /* propernames.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = propernames.txt; sourceTree = "<group>"; };
 		F2B34D2D6A0940B8872C4010 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -59,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D36E10A617448EE2004970EA /* CoreData.framework in Frameworks */,
 				D3CCB38116FB9FD10026474A /* UIKit.framework in Frameworks */,
 				D3CCB38316FB9FD10026474A /* Foundation.framework in Frameworks */,
 				D3CCB38516FB9FD10026474A /* CoreGraphics.framework in Frameworks */,
@@ -72,6 +80,8 @@
 		D3CCB37416FB9FD10026474A = {
 			isa = PBXGroup;
 			children = (
+				D36E10AA17448F4E004970EA /* Words.xcdatamodeld */,
+				D36E10A517448EE2004970EA /* CoreData.framework */,
 				D3CCB38616FB9FD10026474A /* Words */,
 				D3CCB37F16FB9FD10026474A /* Frameworks */,
 				D3CCB37E16FB9FD10026474A /* Products */,
@@ -114,6 +124,8 @@
 				D33301E71717400200DAFE50 /* SRANewWordController.m */,
 				D33301E81717400200DAFE50 /* SRANewWordController.xib */,
 				D33301EB17174FD200DAFE50 /* SRANewWordControllerDelegate.h */,
+				D36E10B71744AC0E004970EA /* SRAWord.h */,
+				D36E10B81744AC0E004970EA /* SRAWord.m */,
 			);
 			path = Words;
 			sourceTree = "<group>";
@@ -121,7 +133,7 @@
 		D3CCB38716FB9FD10026474A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D3CCB39D16FBA05A0026474A /* propernames.txt */,
+				D36E10B217449BA4004970EA /* words.txt */,
 				D3CCB38816FB9FD10026474A /* Words-Info.plist */,
 				D3CCB38916FB9FD10026474A /* InfoPlist.strings */,
 				D3CCB38C16FB9FD10026474A /* main.m */,
@@ -191,8 +203,8 @@
 				D3CCB39316FB9FD10026474A /* Default.png in Resources */,
 				D3CCB39516FB9FD10026474A /* Default@2x.png in Resources */,
 				D3CCB39716FB9FD10026474A /* Default-568h@2x.png in Resources */,
-				D3CCB39E16FBA05A0026474A /* propernames.txt in Resources */,
 				D33301EA1717400200DAFE50 /* SRANewWordController.xib in Resources */,
+				D36E10B317449BA4004970EA /* words.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +252,8 @@
 				D31246A016FBB82800FD997B /* SRAWordsTableViewController.m in Sources */,
 				D33301E2171649A300DAFE50 /* SRALettersTableViewController.m in Sources */,
 				D33301E91717400200DAFE50 /* SRANewWordController.m in Sources */,
+				D36E10AC17448F4E004970EA /* Words.xcdatamodeld in Sources */,
+				D36E10B91744AC0E004970EA /* SRAWord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +377,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D36E10AA17448F4E004970EA /* Words.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D36E10AB17448F4E004970EA /* Words.xcdatamodel */,
+			);
+			currentVersion = D36E10AB17448F4E004970EA /* Words.xcdatamodel */;
+			path = Words.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D3CCB37516FB9FD10026474A /* Project object */;
 }

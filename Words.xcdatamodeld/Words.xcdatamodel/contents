@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="SRALetter" syncable="YES">
+        <attribute name="content" attributeType="String" minValueString="1" maxValueString="1" indexed="YES" syncable="YES"/>
+        <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SRAWord" inverseName="letter" inverseEntity="SRAWord" syncable="YES"/>
+    </entity>
+    <entity name="SRAPrefix" syncable="YES">
+        <attribute name="content" attributeType="String" minValueString="1" maxValueString="3" indexed="YES" syncable="YES"/>
+        <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SRAWord" inverseName="prefix" inverseEntity="SRAWord" syncable="YES"/>
+    </entity>
+    <entity name="SRAWord" representedClassName="SRAWord" syncable="YES">
+        <attribute name="content" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="letter" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SRALetter" inverseName="words" inverseEntity="SRALetter" syncable="YES"/>
+        <relationship name="prefix" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SRAPrefix" inverseName="words" inverseEntity="SRAPrefix" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="SRAWord" positionX="160" positionY="192" width="128" height="88"/>
+        <element name="SRALetter" positionX="441" positionY="204" width="128" height="73"/>
+        <element name="SRAPrefix" positionX="241" positionY="-90" width="128" height="73"/>
+    </elements>
+</model>

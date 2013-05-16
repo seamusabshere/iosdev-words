@@ -19,11 +19,11 @@
   if (self) {
     UINavigationItem *navigationItem = self.navigationItem;
     navigationItem.title = @"Letters";
-    UIBarButtonItem *addNewItemBarButton = [[UIBarButtonItem alloc]
+    UIBarButtonItem *addWordBarButton = [[UIBarButtonItem alloc]
                                             initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                             target:self
-                                            action:@selector(addNewWord:)];
-    self.navigationItem.rightBarButtonItem = addNewItemBarButton;
+                                            action:@selector(addWord:)];
+    self.navigationItem.rightBarButtonItem = addWordBarButton;
   }
   return self;
 }
@@ -60,7 +60,7 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
   int idx = [indexPath row];
-  cell.textLabel.text = [[[SRAWordStore sharedStore] firstLetters] objectAtIndex:idx];
+  cell.textLabel.text = [[[[SRAWordStore sharedStore] firstLetters] objectAtIndex:idx] valueForKey:@"content"];
   return cell;
 }
 
@@ -69,11 +69,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   NSString *selectedLetter = [[[SRAWordStore sharedStore] firstLetters] objectAtIndex:[indexPath row]];
-  SRAWordsTableViewController *properNamesTableViewController = [[SRAWordsTableViewController alloc] initWithFirstLetter:selectedLetter];
-  [self.navigationController pushViewController:properNamesTableViewController animated:YES];
+  SRAWordsTableViewController *wordsTableViewController = [[SRAWordsTableViewController alloc] initWithFirstLetter:selectedLetter];
+  [self.navigationController pushViewController:wordsTableViewController animated:YES];
 }
 
-- (IBAction)addNewWord:(id)sender {
+- (IBAction)addWord:(id)sender {
   SRANewWordController *newWordController = [[SRANewWordController alloc] init];
   newWordController.delegate = self;
 //  detailViewController.dismissBlock = ^{
@@ -90,9 +90,9 @@
 }
 
 - (void)newWordController:(SRANewWordController *)controller
-                didAddWord:(NSString *)properName {
-  if ([properName length] > 0) {
-    [[SRAWordStore sharedStore] addString:properName];
+                didAddWord:(NSString *)word {
+  if ([word length] > 0) {
+    [[SRAWordStore sharedStore] add:word];
   }
   [self.tableView reloadData];
   [self dismissViewControllerAnimated:YES completion:nil];

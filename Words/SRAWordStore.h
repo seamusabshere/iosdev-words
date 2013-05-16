@@ -9,11 +9,18 @@
 #import <Foundation/Foundation.h>
 
 @interface SRAWordStore : NSObject
-@property (strong,readonly,nonatomic)NSArray *allWords;
-@property (strong,readonly,nonatomic)NSArray *firstLetters;
+
 + (SRAWordStore *)sharedStore;
-- (BOOL)bootstrap:(NSURL *)url; // load URL if store is empty
-- (void)loadUrl:(NSURL *)url;
+- (BOOL)save;
+- (BOOL)bootstrap:(NSURL *)url;
+- (void)load:(NSURL *)url;
+- (NSArray *)firstLetters;
 - (NSArray *)byFirstLetter:(NSString *)firstLetter;
-- (void)addString:(NSString *)str;
+- (void)add:(NSString *)word;
+
+//- (NSArray *)prefixesForLetter:(NSString *)letter;
+//- (NSArray *)wordsForPrefix:(NSString *)prefix;
+
+- (NSUInteger)countWithPredicate:(NSPredicate *)predicate;
+- (NSUInteger)prefixCount;
 @end

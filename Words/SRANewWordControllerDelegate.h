@@ -11,5 +11,5 @@
 @class SRANewWordController;
 
 @protocol SRANewWordControllerDelegate <NSObject>
-- (void)newWordController:(SRANewWordController *)controller didAddWord:(NSString *)properName;
+- (void)newWordController:(SRANewWordController *)controller didAddWord:(NSString *)word;
 @end

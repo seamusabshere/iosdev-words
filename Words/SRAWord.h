@@ -16,4 +16,5 @@
 @property (nonatomic, strong) NSManagedObject *letter;
 @property (nonatomic, strong) NSManagedObject *prefix;
 
++ (SRAWord *)safeInsert:(NSString *)content inManagedObjectContext:context;
 @end

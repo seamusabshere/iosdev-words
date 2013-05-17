@@ -38,12 +38,6 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
-  // Uncomment the following line to preserve selection between presentations.
-  // self.clearsSelectionOnViewWillAppear = NO;
-  
-  // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,10 +69,10 @@
 
 - (NSArray *)prefixes
 {
-  if (!self.cachedPrefixes) {
+//  if (!self.cachedPrefixes) {
     NSArray *descriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"description" ascending:YES]];
     self.cachedPrefixes = [[[self.letter valueForKey:@"words"] valueForKeyPath:@"@distinctUnionOfObjects.prefix"] sortedArrayUsingDescriptors:descriptors];
-  }
+//  }
   return self.cachedPrefixes;
 }
 

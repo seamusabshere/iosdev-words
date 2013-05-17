@@ -21,7 +21,7 @@
   if (self) {
     _prefix = prefix;
     UINavigationItem *navigationItem = self.navigationItem;
-    navigationItem.title = [NSString stringWithFormat:@"%@ words", [_prefix valueForKey:@"content"]];
+    navigationItem.title = [NSString stringWithFormat:@"'%@' words", [_prefix valueForKey:@"content"]];
   }
   return self;  
 }

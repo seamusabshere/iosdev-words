@@ -15,13 +15,16 @@
 @dynamic letter;
 @dynamic prefix;
 
-- (void)didChangeValueForKey:(NSString *)key
++ (SRAWord *)safeInsert:(NSString *)content inManagedObjectContext:context
 {
-  if ([key isEqualToString:@"content"]) {
-    NSString *content = self.content;
-    self.letter = [[SRAWordStore sharedStore] findLetter:content];
-    self.prefix = [[SRAWordStore sharedStore] findPrefix:content];
-  }
+  SRAWord *word = [NSEntityDescription insertNewObjectForEntityForName:@"SRAWord"
+                                                inManagedObjectContext:context];
+  NSManagedObject *letter = [[SRAWordStore sharedStore] findLetter:content];
+  NSManagedObject *prefix = [[SRAWordStore sharedStore] findPrefix:content];
+  word.content = content;
+  word.letter = letter;
+  word.prefix = prefix;
+  return word;
 }
 
 @end

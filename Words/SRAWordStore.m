@@ -55,7 +55,7 @@
 
 - (NSArray *)letters
 {
-  if (!self.cachedLetters) {
+//  if (!self.cachedLetters) {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     request.entity = [NSEntityDescription entityForName:@"SRALetter" inManagedObjectContext:self.context];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor
@@ -69,15 +69,15 @@
       [NSException raise:@"Letter fetch failed" format:@"Reason: %@", [error localizedDescription]];
     }
     self.cachedLetters = result;
-  }
+//  }
   return self.cachedLetters;
 }
 
 - (NSManagedObject *)findLetter:(NSString *)str
 {
-  if (!self.cachedFindLetter) {
+//  if (!self.cachedFindLetter) {
     self.cachedFindLetter = [[NSMutableDictionary alloc] init];
-  }
+//  }
   NSString *letterStr = [str substringToIndex:1];
   NSManagedObject *letter = [self.cachedFindLetter objectForKey:letterStr];
   if (!letter) {
@@ -95,6 +95,7 @@
       letter = [NSEntityDescription insertNewObjectForEntityForName:@"SRALetter" inManagedObjectContext:self.context];
       // can't i use a setter?
       [letter setValue:letterStr forKey:@"content"];
+//      [self.context refreshObject:letter mergeChanges:YES];
     } else {
       letter = [result objectAtIndex:0];
     }
@@ -107,7 +108,7 @@
 
 - (NSArray *)prefixes
 {
-  if (!self.cachedPrefixes) {
+//  if (!self.cachedPrefixes) {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     request.entity = [NSEntityDescription entityForName:@"SRAPrefix" inManagedObjectContext:self.context];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor
@@ -121,15 +122,15 @@
       [NSException raise:@"Prefix fetch failed" format:@"Reason: %@", [error localizedDescription]];
     }
     self.cachedPrefixes = result;
-  }
+//  }
   return self.cachedPrefixes;
 }
 
 - (NSManagedObject *)findPrefix:(NSString *)str
 {
-  if (!self.cachedFindPrefix) {
+//  if (!self.cachedFindPrefix) {
     self.cachedFindPrefix = [[NSMutableDictionary alloc] init];
-  }
+//  }
   int prefixLength;
   int maxPrefixLength = [str length];
   prefixLength = (maxPrefixLength >= 3) ? 3 : maxPrefixLength;
@@ -150,6 +151,7 @@
       prefix = [NSEntityDescription insertNewObjectForEntityForName:@"SRAPrefix" inManagedObjectContext:self.context];
       // can't i use a setter?
       [prefix setValue:prefixStr forKey:@"content"];
+//      [self.context refreshObject:prefix mergeChanges:YES];
     } else {
       prefix = [result objectAtIndex:0];
     }
@@ -198,9 +200,7 @@
 
 - (void)add:(NSString *)str immediate:(BOOL)immediate
 {
-  SRAWord *word = [NSEntityDescription insertNewObjectForEntityForName:@"SRAWord"
-                                                inManagedObjectContext:self.context];
-  word.content = str;
+  [SRAWord safeInsert:str inManagedObjectContext:self.context];
   if (immediate) {
     [self save];
     [self clearCache];

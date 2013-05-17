@@ -7,7 +7,6 @@
 //
 
 #import "SRANewWordController.h"
-#import "SRAWordStore.h"
 
 @interface SRANewWordController ()
 @property (weak, nonatomic) IBOutlet UITextField *textField;

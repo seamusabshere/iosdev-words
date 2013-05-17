@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "Models/SRAPrefix.h"
 
 @interface SRAWordsTableViewController : UITableViewController
-@property (strong,readonly,nonatomic) NSManagedObject* prefix;
-- (id)initWithPrefix:(NSManagedObject *)prefix;
+@property (strong,readonly,nonatomic) SRAPrefix* prefix;
+- (id)initWithPrefix:(SRAPrefix *)prefix;
 @end

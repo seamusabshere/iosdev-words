@@ -8,19 +8,21 @@
 
 #import "SRAPrefixesTableViewController.h"
 #import "SRAWordsTableViewController.h"
+#import "Models/SRALetter.h"
+#import "Models/SRAPrefix.h"
 
 @interface SRAPrefixesTableViewController ()
 @property (strong, nonatomic)NSArray *cachedPrefixes;
 @end
 
 @implementation SRAPrefixesTableViewController
-- (id)initWithLetter:(NSManagedObject *)letter
+- (id)initWithLetter:(SRALetter *)letter
 {
   self = [self init];
   if (self) {
     _letter = letter;
     UINavigationItem *navigationItem = self.navigationItem;
-    navigationItem.title = [NSString stringWithFormat:@"%@ prefixes", [_letter valueForKey:@"content"]];
+    navigationItem.title = [NSString stringWithFormat:@"%@ prefixes", _letter.content];
   }
   return self;
 }
@@ -62,17 +64,16 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
   int idx = [indexPath row];
-  NSManagedObject *prefix = [self.prefixes objectAtIndex:idx];
-  cell.textLabel.text = [prefix valueForKey:@"content"];
+  SRAPrefix *prefix = [self.prefixes objectAtIndex:idx];
+  cell.textLabel.text = prefix.content;
   return cell;
 }
 
 - (NSArray *)prefixes
 {
-//  if (!self.cachedPrefixes) {
-    NSArray *descriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"description" ascending:YES]];
-    self.cachedPrefixes = [[[self.letter valueForKey:@"words"] valueForKeyPath:@"@distinctUnionOfObjects.prefix"] sortedArrayUsingDescriptors:descriptors];
-//  }
+  if (!self.cachedPrefixes) {
+    self.cachedPrefixes = [self.letter sortedPrefixes];
+  }
   return self.cachedPrefixes;
 }
 
@@ -80,7 +81,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  NSManagedObject *prefix = [self.prefixes objectAtIndex:[indexPath row]];
+  SRAPrefix *prefix = [self.prefixes objectAtIndex:[indexPath row]];
   SRAWordsTableViewController *wordsTableViewController = [[SRAWordsTableViewController alloc] initWithPrefix:prefix];
   [self.navigationController pushViewController:wordsTableViewController animated:YES];
   

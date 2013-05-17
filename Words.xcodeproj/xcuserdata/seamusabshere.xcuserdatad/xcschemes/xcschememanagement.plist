@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Mogenerator.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>Words.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>D325B7FE17469ED700A315DF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D3CCB37C16FB9FD10026474A</key>
 		<dict>
 			<key>primary</key>

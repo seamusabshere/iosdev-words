@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "Models/SRALetter.h"
 
 @interface SRAPrefixesTableViewController : UITableViewController
-- (id)initWithLetter:(NSManagedObject *)letter;
-@property (strong,readonly,nonatomic) NSManagedObject* letter;
+- (id)initWithLetter:(SRALetter *)letter;
+@property (strong,readonly,nonatomic) SRALetter* letter;
 @end

@@ -6,17 +6,35 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		D325B7FE17469ED700A315DF /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = D325B80117469ED700A315DF /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				D325B80217469EE200A315DF /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		5F72A5157F654A468D7C10F7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF67D3D55C6F424C922636FB /* libPods.a */; };
-		D312469D16FBB57900FD997B /* SRAWordStore.m in Sources */ = {isa = PBXBuildFile; fileRef = D312469C16FBB57900FD997B /* SRAWordStore.m */; };
 		D31246A016FBB82800FD997B /* SRAWordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D312469F16FBB82800FD997B /* SRAWordsTableViewController.m */; };
+		D325B8101746A16F00A315DF /* _SRALetter.m in Sources */ = {isa = PBXBuildFile; fileRef = D325B8051746A16F00A315DF /* _SRALetter.m */; };
+		D325B8111746A16F00A315DF /* _SRAPrefix.m in Sources */ = {isa = PBXBuildFile; fileRef = D325B8071746A16F00A315DF /* _SRAPrefix.m */; };
+		D325B8121746A16F00A315DF /* _SRAWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D325B8091746A16F00A315DF /* _SRAWord.m */; };
+		D325B8131746A16F00A315DF /* SRALetter.m in Sources */ = {isa = PBXBuildFile; fileRef = D325B80B1746A16F00A315DF /* SRALetter.m */; };
+		D325B8141746A16F00A315DF /* SRAPrefix.m in Sources */ = {isa = PBXBuildFile; fileRef = D325B80D1746A16F00A315DF /* SRAPrefix.m */; };
+		D325B8151746A16F00A315DF /* SRAWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D325B80F1746A16F00A315DF /* SRAWord.m */; };
 		D33301E2171649A300DAFE50 /* SRALettersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33301E1171649A300DAFE50 /* SRALettersTableViewController.m */; };
 		D33301E91717400200DAFE50 /* SRANewWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33301E71717400200DAFE50 /* SRANewWordController.m */; };
 		D33301EA1717400200DAFE50 /* SRANewWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33301E81717400200DAFE50 /* SRANewWordController.xib */; };
 		D36E10A617448EE2004970EA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36E10A517448EE2004970EA /* CoreData.framework */; };
 		D36E10AC17448F4E004970EA /* Words.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D36E10AA17448F4E004970EA /* Words.xcdatamodeld */; };
 		D36E10B317449BA4004970EA /* words.txt in Resources */ = {isa = PBXBuildFile; fileRef = D36E10B217449BA4004970EA /* words.txt */; };
-		D36E10B91744AC0E004970EA /* SRAWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E10B81744AC0E004970EA /* SRAWord.m */; };
 		D36E10BC1744D7C0004970EA /* SRAPrefixesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E10BB1744D7C0004970EA /* SRAPrefixesTableViewController.m */; };
 		D3CCB38116FB9FD10026474A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CCB38016FB9FD10026474A /* UIKit.framework */; };
 		D3CCB38316FB9FD10026474A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CCB38216FB9FD10026474A /* Foundation.framework */; };
@@ -31,10 +49,20 @@
 
 /* Begin PBXFileReference section */
 		CF67D3D55C6F424C922636FB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D312469B16FBB57900FD997B /* SRAWordStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAWordStore.h; sourceTree = "<group>"; };
-		D312469C16FBB57900FD997B /* SRAWordStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAWordStore.m; sourceTree = "<group>"; };
 		D312469E16FBB82800FD997B /* SRAWordsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAWordsTableViewController.h; sourceTree = "<group>"; };
 		D312469F16FBB82800FD997B /* SRAWordsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAWordsTableViewController.m; sourceTree = "<group>"; };
+		D325B8041746A16F00A315DF /* _SRALetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SRALetter.h; sourceTree = "<group>"; };
+		D325B8051746A16F00A315DF /* _SRALetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SRALetter.m; sourceTree = "<group>"; };
+		D325B8061746A16F00A315DF /* _SRAPrefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SRAPrefix.h; sourceTree = "<group>"; };
+		D325B8071746A16F00A315DF /* _SRAPrefix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SRAPrefix.m; sourceTree = "<group>"; };
+		D325B8081746A16F00A315DF /* _SRAWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SRAWord.h; sourceTree = "<group>"; };
+		D325B8091746A16F00A315DF /* _SRAWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SRAWord.m; sourceTree = "<group>"; };
+		D325B80A1746A16F00A315DF /* SRALetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRALetter.h; sourceTree = "<group>"; };
+		D325B80B1746A16F00A315DF /* SRALetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRALetter.m; sourceTree = "<group>"; };
+		D325B80C1746A16F00A315DF /* SRAPrefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAPrefix.h; sourceTree = "<group>"; };
+		D325B80D1746A16F00A315DF /* SRAPrefix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAPrefix.m; sourceTree = "<group>"; };
+		D325B80E1746A16F00A315DF /* SRAWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAWord.h; sourceTree = "<group>"; };
+		D325B80F1746A16F00A315DF /* SRAWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAWord.m; sourceTree = "<group>"; };
 		D33301E0171649A300DAFE50 /* SRALettersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRALettersTableViewController.h; sourceTree = "<group>"; };
 		D33301E1171649A300DAFE50 /* SRALettersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRALettersTableViewController.m; sourceTree = "<group>"; };
 		D33301E61717400200DAFE50 /* SRANewWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRANewWordController.h; sourceTree = "<group>"; };
@@ -44,8 +72,6 @@
 		D36E10A517448EE2004970EA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D36E10AB17448F4E004970EA /* Words.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Words.xcdatamodel; sourceTree = "<group>"; };
 		D36E10B217449BA4004970EA /* words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = words.txt; sourceTree = "<group>"; };
-		D36E10B71744AC0E004970EA /* SRAWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAWord.h; sourceTree = "<group>"; };
-		D36E10B81744AC0E004970EA /* SRAWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAWord.m; sourceTree = "<group>"; };
 		D36E10BA1744D7C0004970EA /* SRAPrefixesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRAPrefixesTableViewController.h; sourceTree = "<group>"; };
 		D36E10BB1744D7C0004970EA /* SRAPrefixesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRAPrefixesTableViewController.m; sourceTree = "<group>"; };
 		D3CCB37D16FB9FD10026474A /* Words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Words.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +106,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D325B8031746A12B00A315DF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D325B8041746A16F00A315DF /* _SRALetter.h */,
+				D325B8051746A16F00A315DF /* _SRALetter.m */,
+				D325B8061746A16F00A315DF /* _SRAPrefix.h */,
+				D325B8071746A16F00A315DF /* _SRAPrefix.m */,
+				D325B8081746A16F00A315DF /* _SRAWord.h */,
+				D325B8091746A16F00A315DF /* _SRAWord.m */,
+				D325B80A1746A16F00A315DF /* SRALetter.h */,
+				D325B80B1746A16F00A315DF /* SRALetter.m */,
+				D325B80C1746A16F00A315DF /* SRAPrefix.h */,
+				D325B80D1746A16F00A315DF /* SRAPrefix.m */,
+				D325B80E1746A16F00A315DF /* SRAWord.h */,
+				D325B80F1746A16F00A315DF /* SRAWord.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D3CCB37416FB9FD10026474A = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +159,7 @@
 		D3CCB38616FB9FD10026474A /* Words */ = {
 			isa = PBXGroup;
 			children = (
+				D325B8031746A12B00A315DF /* Models */,
 				D3CCB38F16FB9FD10026474A /* SRAAppDelegate.h */,
 				D3CCB39016FB9FD10026474A /* SRAAppDelegate.m */,
 				D33301E0171649A300DAFE50 /* SRALettersTableViewController.h */,
@@ -124,12 +170,8 @@
 				D33301EB17174FD200DAFE50 /* SRANewWordControllerDelegate.h */,
 				D36E10BA1744D7C0004970EA /* SRAPrefixesTableViewController.h */,
 				D36E10BB1744D7C0004970EA /* SRAPrefixesTableViewController.m */,
-				D36E10B71744AC0E004970EA /* SRAWord.h */,
-				D36E10B81744AC0E004970EA /* SRAWord.m */,
 				D312469E16FBB82800FD997B /* SRAWordsTableViewController.h */,
 				D312469F16FBB82800FD997B /* SRAWordsTableViewController.m */,
-				D312469B16FBB57900FD997B /* SRAWordStore.h */,
-				D312469C16FBB57900FD997B /* SRAWordStore.m */,
 				D3CCB38716FB9FD10026474A /* Supporting Files */,
 			);
 			path = Words;
@@ -195,6 +237,7 @@
 			projectRoot = "";
 			targets = (
 				D3CCB37C16FB9FD10026474A /* Words */,
+				D325B7FE17469ED700A315DF /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -230,6 +273,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sanbox is not in sync with the Podfile.lock. Run 'pod install'.\nEOM\n    exit 1\nfi\n";
 		};
+		D325B80217469EE200A315DF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mogenerator -m Words.xcdatamodeld/Words.xcdatamodel/ --output-dir=Words/Models/ --template-var arc=true";
+		};
 		E98967C62B4B457EA405B2A4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -253,13 +309,17 @@
 			files = (
 				D3CCB38D16FB9FD10026474A /* main.m in Sources */,
 				D3CCB39116FB9FD10026474A /* SRAAppDelegate.m in Sources */,
-				D312469D16FBB57900FD997B /* SRAWordStore.m in Sources */,
 				D31246A016FBB82800FD997B /* SRAWordsTableViewController.m in Sources */,
 				D33301E2171649A300DAFE50 /* SRALettersTableViewController.m in Sources */,
 				D33301E91717400200DAFE50 /* SRANewWordController.m in Sources */,
 				D36E10AC17448F4E004970EA /* Words.xcdatamodeld in Sources */,
-				D36E10B91744AC0E004970EA /* SRAWord.m in Sources */,
 				D36E10BC1744D7C0004970EA /* SRAPrefixesTableViewController.m in Sources */,
+				D325B8101746A16F00A315DF /* _SRALetter.m in Sources */,
+				D325B8111746A16F00A315DF /* _SRAPrefix.m in Sources */,
+				D325B8121746A16F00A315DF /* _SRAWord.m in Sources */,
+				D325B8131746A16F00A315DF /* SRALetter.m in Sources */,
+				D325B8141746A16F00A315DF /* SRAPrefix.m in Sources */,
+				D325B8151746A16F00A315DF /* SRAWord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +337,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D325B7FF17469ED700A315DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D325B80017469ED700A315DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		D3CCB39816FB9FD10026474A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -364,6 +438,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D325B80117469ED700A315DF /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D325B7FF17469ED700A315DF /* Debug */,
+				D325B80017469ED700A315DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		D3CCB37816FB9FD10026474A /* Build configuration list for PBXProject "Words" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

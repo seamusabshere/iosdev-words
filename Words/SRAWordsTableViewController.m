@@ -7,7 +7,7 @@
 //
 
 #import "SRAWordsTableViewController.h"
-#import "SRAWordStore.h"
+#import "Models/SRAPrefix.h"
 
 @interface SRAWordsTableViewController ()
 @property (strong, nonatomic)NSArray *cachedWords;
@@ -15,13 +15,13 @@
 
 @implementation SRAWordsTableViewController
 
-- (id)initWithPrefix:(NSManagedObject *)prefix
+- (id)initWithPrefix:(SRAPrefix *)prefix
 {
   self = [self init];
   if (self) {
     _prefix = prefix;
     UINavigationItem *navigationItem = self.navigationItem;
-    navigationItem.title = [NSString stringWithFormat:@"'%@' words", [_prefix valueForKey:@"content"]];
+    navigationItem.title = [NSString stringWithFormat:@"'%@' words", _prefix.content];
   }
   return self;  
 }
@@ -50,6 +50,7 @@
     cell = [[UITableViewCell alloc]
             initWithStyle:UITableViewCellStyleDefault
             reuseIdentifier:@"UITableViewCell"];
+    cell.userInteractionEnabled = NO;
   }
   cell.textLabel.text = [[self.words objectAtIndex:[indexPath row]] valueForKey:@"content"];
   return cell;
@@ -64,11 +65,9 @@
 - (NSArray *)words
 {
   if (!self.cachedWords) {
-    NSArray *descriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"description" ascending:YES]];
-    self.cachedWords = [[self.prefix valueForKey:@"words"] sortedArrayUsingDescriptors:descriptors];
+    self.cachedWords = [self.prefix sortedWords];
   }
   return self.cachedWords;
 }
-
 
 @end

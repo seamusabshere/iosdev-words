@@ -9,9 +9,12 @@
 #import "SRALettersTableViewController.h"
 #import "SRAPrefixesTableViewController.h"
 #import "SRANewWordController.h"
-#import "SRAWordsTableViewController.h"
-#import "SRAWord.h"
-#import "SRAWordStore.h"
+#import "Models/SRALetter.h"
+#import "Models/SRAWord.h"
+
+@interface SRALettersTableViewController ()
+@property (strong,nonatomic)NSArray* cachedLetters;
+@end
 
 @implementation SRALettersTableViewController
 
@@ -49,7 +52,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return [[[SRAWordStore sharedStore] letters] count];
+  return [SRALetter count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -62,7 +65,7 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
   int idx = [indexPath row];
-  cell.textLabel.text = [[[[SRAWordStore sharedStore] letters] objectAtIndex:idx] valueForKey:@"content"];
+  cell.textLabel.text = [[self.letters objectAtIndex:idx] valueForKey:@"content"];
   return cell;
 }
 
@@ -70,7 +73,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  SRAPrefixesTableViewController *prefixesTableViewController = [[SRAPrefixesTableViewController alloc] initWithLetter:[[[SRAWordStore sharedStore] letters] objectAtIndex:[indexPath row]]];
+  SRAPrefixesTableViewController *prefixesTableViewController = [[SRAPrefixesTableViewController alloc] initWithLetter:[self.letters objectAtIndex:[indexPath row]]];
   [self.navigationController pushViewController:prefixesTableViewController animated:YES];
 }
 
@@ -86,12 +89,20 @@
 }
 
 - (void)newWordController:(SRANewWordController *)controller
-                didAddWord:(NSString *)word {
-  if ([word length] > 0) {
-    [[SRAWordStore sharedStore] add:word];
+                didAddWord:(NSString *)content {
+  if ([content length] > 0) {
+    [SRAWord create:content];
   }
   [self.tableView reloadData];
   [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (NSArray *)letters;
+{
+  if (!self.cachedLetters) {
+    self.cachedLetters = [SRALetter sorted];
+  }
+  return self.cachedLetters;
 }
 
 @end

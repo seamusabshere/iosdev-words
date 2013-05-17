@@ -11,4 +11,8 @@
 #ifdef __OBJC__
   #import <UIKit/UIKit.h>
   #import <Foundation/Foundation.h>
+
+  // http://stackoverflow.com/questions/5082738/ios-calling-app-delegate-method-from-viewcontroller
+  #import "SRAAppDelegate.h"
+  #define AppDelegate ((SRAAppDelegate *)[UIApplication sharedApplication].delegate)
 #endif

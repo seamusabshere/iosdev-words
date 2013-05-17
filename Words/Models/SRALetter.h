@@ -5,5 +5,7 @@
 + (NSArray *)sorted;
 + (SRALetter *)create:(NSString *)content;
 + (NSUInteger)count;
++ (NSUInteger)countWithPredicate:(NSPredicate *)predicate;
+- (NSUInteger)prefixCount;
 - (NSArray *)sortedPrefixes;
 @end

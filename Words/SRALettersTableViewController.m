@@ -60,12 +60,14 @@
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
   if (!cell) {
     cell = [[UITableViewCell alloc]
-            initWithStyle:UITableViewCellStyleDefault
+            initWithStyle:UITableViewCellStyleSubtitle
             reuseIdentifier:@"UITableViewCell"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
   int idx = [indexPath row];
-  cell.textLabel.text = [[self.letters objectAtIndex:idx] valueForKey:@"content"];
+  SRALetter *letter = [self.letters objectAtIndex:idx];
+  cell.textLabel.text = [letter valueForKey:@"content"];
+  cell.detailTextLabel.text = [NSString stringWithFormat:@"%d prefixes", [letter prefixCount]];
   return cell;
 }
 

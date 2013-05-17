@@ -1,4 +1,5 @@
 #import "SRAPrefix.h"
+#import "SRAWord.h"
 
 
 @interface SRAPrefix ()
@@ -37,10 +38,33 @@
   return prefix;
 }
 
++ (NSUInteger)countWithPredicate:(NSPredicate *)predicate
+{
+  NSManagedObjectContext *moc = AppDelegate.managedObjectContext;
+  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  NSEntityDescription *entity = [self entityInManagedObjectContext:moc];
+  request.entity = entity;
+  request.includesSubentities = NO;
+  request.predicate = predicate;
+  NSError *error = nil;
+  NSUInteger count = [moc countForFetchRequest:request
+                                         error:&error];
+  if (count == NSNotFound) {
+    [NSException raise:@"Count failed"
+                format:@"Reason: %@", [error localizedDescription]];
+  }
+  return count;
+}
+
 - (NSArray *)sortedWords
 {
   NSArray *descriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"content" ascending:YES]];
   return [self.words sortedArrayUsingDescriptors:descriptors];
+}
+
+- (NSUInteger)wordCount
+{
+  return [SRAWord countWithPredicate:[NSPredicate predicateWithFormat:@"content BEGINSWITH %@", self.content]];
 }
 
 @end

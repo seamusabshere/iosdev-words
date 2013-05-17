@@ -59,13 +59,14 @@
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
   if (!cell) {
     cell = [[UITableViewCell alloc]
-            initWithStyle:UITableViewCellStyleDefault
+            initWithStyle:UITableViewCellStyleSubtitle
             reuseIdentifier:@"UITableViewCell"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
   int idx = [indexPath row];
   SRAPrefix *prefix = [self.prefixes objectAtIndex:idx];
   cell.textLabel.text = prefix.content;
+  cell.detailTextLabel.text = [NSString stringWithFormat:@"%d words", [prefix wordCount]];
   return cell;
 }
 

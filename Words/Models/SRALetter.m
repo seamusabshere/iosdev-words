@@ -1,5 +1,5 @@
 #import "SRALetter.h"
-
+#import "SRAPrefix.h"
 
 @interface SRALetter ()
 @end
@@ -34,7 +34,6 @@
   NSManagedObjectContext *moc = AppDelegate.managedObjectContext;
   NSString *letterStr = [content substringToIndex:1];
   SRALetter *letter;
-  //    NSLog(@"missL - %@", letterStr);
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
   request.entity = [self entityInManagedObjectContext:moc];
   request.predicate = [NSPredicate predicateWithFormat:@"content = %@", letterStr];
@@ -77,10 +76,17 @@
   return count;
 }
 
+// one way of looking up a to-many through
 - (NSArray *)sortedPrefixes
 {
   NSArray *descriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"content" ascending:YES]];
   return [[self.words valueForKeyPath:@"@distinctUnionOfObjects.prefix"] sortedArrayUsingDescriptors:descriptors];
+}
+
+// i guess the way i should have done it - don't need to go through words
+- (NSUInteger)prefixCount
+{
+  return [SRAPrefix countWithPredicate:[NSPredicate predicateWithFormat:@"content BEGINSWITH %@", self.content]];
 }
 
 @end
